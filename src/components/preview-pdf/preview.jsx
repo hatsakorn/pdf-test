@@ -26,13 +26,13 @@ const styles = StyleSheet.create({
     fontFamily: "textfont-bold",
   },
   fs1: {
-    fontSize: 20,
+    fontSize: 22,
   },
   fs2: {
-    fontSize: 18,
+    fontSize: 16,
   },
   fs3: {
-    fontSize: 16,
+    fontSize: 13,
   },
   flex: {
     display: "flex",
@@ -59,6 +59,18 @@ const styles = StyleSheet.create({
   content: {
     padding: 10,
   },
+  topic: {
+    borderLeft: 1,
+    margine: 8,
+    fontSize: 14,
+  },
+  item_name: {
+    fontSize: 12,
+  },
+  item_sub: {
+    fontSize: 11,
+    fontColor: "#A1A5B7",
+  },
 });
 
 const BasicDocument = () => {
@@ -78,7 +90,10 @@ const BasicDocument = () => {
           </View>
           <View style={styles.flex}>
             <View style={styles.content}>
-              <Text>| ประวัติการศึกษา</Text>
+              <Text style={[styles.topic, styles.bold]}>
+                {"  "}ประวัติการศึกษา
+              </Text>
+              <Text style={styles.item_name}>มัธยมปลาย</Text>
             </View>
           </View>
         </Page>
