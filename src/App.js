@@ -1,12 +1,10 @@
-import CardPreview from "./components/preview-pdf/preview";
+// import "./App.css";
+// import Dashboard from "./components/Form";
+import Testuseform from "./components/useform";
+// import BasicDocument from "./components/preview-pdf/preview";
 
 function App() {
-  return (
-    <div className="App">
-      <CardPreview />
-      {/* <BasicDocument /> */}
-    </div>
-  );
+  return <Testuseform />;
 }
 
 export default App;
