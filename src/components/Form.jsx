@@ -65,7 +65,6 @@ const Checkboxtext = styled.label`
   display: flex;
   align-item: left;
   color: black;
-  
 `;
 
 const CheckboxContent = styled.input`
@@ -159,7 +158,7 @@ const Dashboard = () => {
   //   }
   // };
 
-  const onsubmit= (data) => {
+  const onsubmit = (data) => {
     // handle form submission
     console.log(data);
   };
