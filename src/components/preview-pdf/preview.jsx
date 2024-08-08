@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import BasicDocument from "./pdf";
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import logo from "./img/logo.png";
 import signer from "./img/signer.png";
 
@@ -72,9 +72,9 @@ const CardPreview = () => {
       <FormContainer>
         <Flex>
           <Header>ตัวอย่าง</Header>
-          <PDFDownloadLink document={<BasicDocument />} fileName="porttest.pdf">
-            <DownloadButton>ส่งคำร้อง</DownloadButton>
-          </PDFDownloadLink>
+          {/* <PDFDownloadLink document={<BasicDocument />} fileName="porttest.pdf"> */}
+          <DownloadButton>ส่งคำร้อง</DownloadButton>
+          {/* </PDFDownloadLink> */}
         </Flex>
         <Subdate>แก้ไขล่าสุด: 5 สิงหาคม 2567 เวลา 20:36</Subdate>
         <hr style={{ marginBottom: 15 }}></hr>

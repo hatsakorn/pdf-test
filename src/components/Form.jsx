@@ -1,16 +1,9 @@
 import React, { useState, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 import styled from "styled-components";
-import profilePicUrl from "./preview-pdf/img/profile.svg";
 import BasicDocument from "./preview-pdf/pdf";
-<<<<<<< HEAD
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
-import avatar from "./preview-pdf/img/avatar.jpg";
-=======
-import { PDFDownloadLink } from "@react-pdf/renderer";
->>>>>>> dev
-import logo from "./preview-pdf/img/logo.png";
-import signer from "./preview-pdf/img/signer.png";
+import profile from "./preview-pdf/img/profile.png";
 
 const AppContainer = styled.div`
   height: 100%;
@@ -289,7 +282,6 @@ const Header = styled.label`
 `;
 const Subdate = styled.label`
   font-size: 11px;
-  border-bottom: 1px solid gray;
 `;
 const Flex = styled.div`
   display: flex;
@@ -313,124 +305,45 @@ const DownloadButton = styled.button`
   }
 `;
 
-const PreviewContainer = styled.div`
-  width: 525px;
-  height: 743px;
-  background-color: #f5f5f5;
-  padding: 20px;
-  margin: 0 auto;
-`;
-
-const Avatar = styled.img`
-  width: 60px;
-  height: 60px;
-  margin-left: 5px;
-`;
-
-const Logo = styled.img`
-  width: 50px;
-  height: 40px;
-`;
-
-const Signer = styled.img`
-  width: 100px;
-  height: 60px;
-`;
-
 const Dashboard = () => {
   const [profilePic, setProfilePic] = useState(null);
   const fileInputRef = useRef(null);
-<<<<<<< HEAD
-  const { control, watch } = useForm();
-  const watchedName = watch("name");
-  const watchedPosition = watch("position");
-  const watchedDescription = watch("description");
-  const watchedAddress = watch("address");
-  const watchedPhone = watch("phone");
-  const watchedEmail = watch("email");
-  const watchedExpert = watch("Expertise");
-
-  const [checkedEdu, setCheckedEdu] = useState(false);
-  const [checkedResearch, setCheckedResearch] = useState(false);
-  const [checkedReward1, setCheckedReward1] = useState(false);
-  const [checkedReward2, setCheckedReward2] = useState(false);
-  const [checkedReward3, setCheckedReward3] = useState(false);
-  const [checkedReward4, setCheckedReward4] = useState(false);
-  const [checkedExp1, setCheckedExp1] = useState(false);
-  const [checkedExp2, setCheckedExp2] = useState(false);
-  const [checkedCertificate, setCheckedCertificate] = useState(false);
-  const [checkedCertificate2, setCheckedCertificate2] = useState(false);
-  const [checkedCertificate3, setCheckedCertificate3] = useState(false);
-  const [checkedCertificate4, setCheckedCertificate4] = useState(false);
-  const [checkedCertificate5, setCheckedCertificate5] = useState(false);
-  const [checkedCertificate6, setCheckedCertificate6] = useState(false);
-  const [checkedCertificate7, setCheckedCertificate7] = useState(false);
-
-  const [checkedShowprofile, setCheckedShowprofile] = useState(false);
-  const [checkshowEducation, setcheckshowEducation] = useState(false);
-  const [checkedShowResearch, setCheckedShowResearch] = useState(false);
-  const [checkedShowReward, setCheckedShowReward] = useState(false);
-  const [checkedShowExp, setCheckedShowExp] = useState(false);
-  const [checkedShowContact, setCheckedShowContact] = useState(false);
-  const [checkedShowExpert, setCheckedShowExpert] = useState(false);
-  const [checkedShowCer, setCheckedShowCer] = useState(false);
-=======
   const { control, watch } = useForm({
-    name: "",
-    position: "",
-    description: "",
-    address: "",
-    phone: "",
-    email: "",
-    Expertise: "",
-    checkshowEducation: false,
-    checkedEdu: false,
-    checkshowResearch: false,
-    checkedResearch: false,
-    checkshowReward: false,
-    checkedReward1: false,
-    checkedReward2: false,
-    checkedReward3: false,
-    checkedReward4: false,
-    checkshowExp: false,
-    checkedExp1: false,
-    checkedExp2: false,
-    checkedShowContact: false,
-    checkShowCer: false,
-    checkedCer1: false,
-    checkedCer2: false,
-    checkedCer3: false,
-    checkedCer4: false,
-    checkedCer5: false,
-    checkedCer6: false,
-    checkedCer7: false,
+    defaultValues: {
+      name: "",
+      position: "",
+      description:
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaa aa aaaaaaaa aaaa aaaaa aaaaaa aaaaaaa aaaaaaa aaaaaaaaa aaaaaaa aaaaaa aaaaa aaaa aaa aa a",
+      address: "",
+      phone: "",
+      email: "",
+      Expertise: "",
+      checkshowEducation: false,
+      checkedEdu: false,
+      checkshowResearch: false,
+      checkedResearch: false,
+      checkshowReward: false,
+      checkedReward1: false,
+      checkedReward2: false,
+      checkedReward3: false,
+      checkedReward4: false,
+      checkshowExp: false,
+      checkedExp1: false,
+      checkedExp2: false,
+      checkedShowContact: false,
+      checkShowCer: false,
+      checkedCer1: false,
+      checkedCer2: false,
+      checkedCer3: false,
+      checkedCer4: false,
+      checkedCer5: false,
+      checkedCer6: false,
+      checkedCer7: false,
+    },
   });
   const watchValues = watch();
-  const checkshowEducation = watch("checkshowEducation");
-  const checkedEdu = watch("checkedEdu");
-  const checkshowResearch = watch("checkshowResearch");
-  const checkedResearch = watch("checkedResearch");
-  const checkshowReward = watch("checkshowReward");
-  const checkedReward1 = watch("checkedReward1");
-  const checkedReward2 = watch("checkedReward2");
-  const checkedReward3 = watch("checkedReward3");
-  const checkedReward4 = watch("checkedReward4");
-  const checkshowExp = watch("checkshowExp");
-  const checkedExp1 = watch("checkedExp1");
-  const checkedExp2 = watch("checkedExp2");
-  const checkedShowContact = watch("checkedShowContact");
-  const checkedShowExpertise = watch("checkedShowExpertise");
-  const checkedShowCer = watch("checkShowCer");
-  const checkCer1 = watch("checkedCer1");
-  const checkCer2 = watch("checkedCer2");
-  const checkCer3 = watch("checkedCer3");
-  const checkCer4 = watch("checkedCer4");
-  const checkCer5 = watch("checkedCer5");
-  const checkCer6 = watch("checkedCer6");
-  const checkCer7 = watch("checkedCer7");
 
   const [checkedShowprofile, setCheckedShowprofile] = useState(false);
->>>>>>> dev
 
   const handleProfilePicChange = (event) => {
     const file = event.target.files[0];
@@ -465,107 +378,8 @@ const Dashboard = () => {
     }
   };
 
-<<<<<<< HEAD
-  const handleCheckEduChange = (event) => {
-    setCheckedEdu(event.target.checked);
-  };
-
-  const handleCheckResearchChange = (event) => {
-    setCheckedResearch(event.target.checked);
-  };
-
-  const handleCheckRewardChange1 = (event) => {
-    setCheckedReward1(event.target.checked);
-  };
-
-  const handleCheckRewardChange2 = (event) => {
-    setCheckedReward2(event.target.checked);
-  };
-
-  const handleCheckRewardChange3 = (event) => {
-    setCheckedReward3(event.target.checked);
-  };
-
-  const handleCheckRewardChange4 = (event) => {
-    setCheckedReward4(event.target.checked);
-  };
-
-  const handleCheckExpChange1 = (event) => {
-    setCheckedExp1(event.target.checked);
-  };
-
-  const handleCheckExpChange2 = (event) => {
-    setCheckedExp2(event.target.checked);
-  };
-
-  const handleCheckCertificateChange = (event) => {
-    setCheckedCertificate(event.target.checked);
-  };
-
-  const handleCheckCertificateChange2 = (event) => {
-    setCheckedCertificate2(event.target.checked);
-  };
-
-  const handleCheckCertificateChange3 = (event) => {
-    setCheckedCertificate3(event.target.checked);
-  };
-
-  const handleCheckCertificateChange4 = (event) => {
-    setCheckedCertificate4(event.target.checked);
-  };
-
-  const handleCheckCertificateChange5 = (event) => {
-    setCheckedCertificate5(event.target.checked);
-  };
-
-  const handleCheckCertificateChange6 = (event) => {
-    setCheckedCertificate6(event.target.checked);
-  };
-
-  const handleCheckCertificateChange7 = (event) => {
-    setCheckedCertificate7(event.target.checked);
-  };
-
   const handleShowProfile = (event) => {
     setCheckedShowprofile(event.target.checked);
-  };
-
-  const handleShowEduhistory = (event) => {
-    setcheckshowEducation(event.target.checked);
-  };
-
-  const handleShowResearch = (event) => {
-    setCheckedShowResearch(event.target.checked);
-  };
-
-  const handleShowReward = (event) => {
-    setCheckedShowReward(event.target.checked);
-  };
-
-  const handleShowExp = (event) => {
-    setCheckedShowExp(event.target.checked);
-  };
-
-  const handleShowContact = (event) => {
-    setCheckedShowContact(event.target.checked);
-  };
-
-  const handleShowExpert = (event) => {
-    setCheckedShowExpert(event.target.checked);
-  };
-
-  const handleShowCer = (event) => {
-    setCheckedShowCer(event.target.checked);
-  };
-  console.log("รูป", profilePic);
-  const data = {
-    name: watchedName,
-    position: watchedPosition,
-    desc: watchedDescription,
-=======
-  const handleShowProfile = (event) => {
-    setCheckedShowprofile(event.target.checked);
->>>>>>> dev
   };
 
   return (
@@ -581,7 +395,7 @@ const Dashboard = () => {
         <hr />
         <ProfilePicContainer>
           <ProfilePicPreview
-            src={profilePic || profilePicUrl}
+            src={profilePic || profile}
             alt="Profile Pic Preview"
           />
           <ProfilePicAbout>
@@ -635,19 +449,12 @@ const Dashboard = () => {
           <CardHeader>
             <HeaderText>ประวัติการศึกษา</HeaderText>
             <CheckboxShow>
-<<<<<<< HEAD
-              <ShowButton
-                type="checkbox"
-                checked={checkshowEducation}
-                onChange={handleShowEduhistory}
-=======
               <Controller
                 name="checkshowEducation"
                 control={control}
                 render={({ field }) => (
                   <ShowButton type="checkbox" {...field} />
                 )}
->>>>>>> dev
               />
               แสดง
             </CheckboxShow>
@@ -1026,316 +833,25 @@ const Dashboard = () => {
         </div>
       </FormContainer>
 
-<<<<<<< HEAD
-=======
       {/*Preview PDF */}
 
->>>>>>> dev
       <FormContainer>
         <Flex>
           <Header>ตัวอย่าง</Header>
-          <PDFDownloadLink document={<BasicDocument />} fileName="porttest.pdf">
+          <PDFDownloadLink
+            document={
+              <BasicDocument data={watchValues} image={profilePic || profile} />
+            }
+            fileName="porttest.pdf">
             <DownloadButton>ส่งคำร้อง</DownloadButton>
           </PDFDownloadLink>
         </Flex>
         <Subdate>แก้ไขล่าสุด: 5 สิงหาคม 2567 เวลา 20:36</Subdate>
         <hr style={{ marginBottom: 15 }}></hr>
-<<<<<<< HEAD
+
         <PDFViewer showToolbar={false} width={503} height={709}>
-          <BasicDocument data={data} />
+          <BasicDocument data={watchValues} image={profilePic || profile} />
         </PDFViewer>
-=======
-        <PreviewContainer>
-          <div style={{ display: "flex", marginBottom: 10 }}>
-            {checkedShowprofile ? (
-              <div>
-                <Avatar src={profilePic || profilePicUrl} />
-              </div>
-            ) : null}
-            <div style={{ marginLeft: 10 }}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  width: 420,
-                }}
-              >
-                <div>
-                  <div style={{ fontSize: 13, fontWeight: "bold" }}>
-                    {watchValues.name}
-                  </div>
-                  <div style={{ fontSize: 10, fontWeight: "bold" }}>
-                    {watchValues.position}
-                  </div>
-                </div>
-                <Logo src={logo} alt="Logo" />
-              </div>
-              <div style={{ marginTop: 5 }}>
-                <div style={{ fontSize: 8, fontWeight: "bold" }}>
-                  {watchValues.description}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* การศึกษา*/}
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <div
-              style={{
-                borderTop: "1px solid #ebe7e7",
-                paddingTop: 10,
-              }}
-            >
-              {checkshowEducation ? (
-                <div style={{ marginBottom: 10 }}>
-                  <div
-                    style={{
-                      borderLeft: "1px solid ",
-                      paddingLeft: 6,
-                      fontSize: 12,
-                      marginTop: 10,
-                    }}
-                  >
-                    ประวัติการศึกษา
-                  </div>
-                  {checkedEdu ? (
-                    <div>
-                      <div style={{ fontSize: 11, marginTop: 5 }}>
-                        มัธยมปลาย, ศิลศาตร์
-                      </div>
-                      <div style={{ fontSize: 10, color: "#A1A5B7" }}>
-                        พ.ศ. 14 เม.ย. 2559 - 14 เม.ย. 2565
-                      </div>
-                      <div style={{ fontSize: 9 }}>เกรดเฉลี่ยสะสม 3.45 สาย</div>
-                    </div>
-                  ) : null}
-                </div>
-              ) : null}
-
-              {/* งานวิจัย*/}
-              {checkshowResearch ? (
-                <div style={{ marginBottom: 10 }}>
-                  <div
-                    style={{
-                      borderLeft: "1px solid",
-                      paddingLeft: 6,
-                      fontSize: 12,
-                      marginTop: 10,
-                    }}
-                  >
-                    ผลงานวิจัยและบทความตีพิมพ์
-                  </div>
-                  {checkedResearch ? (
-                    <div>
-                      <div style={{ fontSize: 11, marginTop: 5 }}>
-                        การแพร่กระจายของการติดเชื้อในผู้ป่วยที่ปลูกถ่ายไขกระดูกและผ่าตัดเปลี่ยนไตในผู้ป่วยไตวายเรื้อรังระยะสุดท้าย
-                      </div>
-                      <div style={{ fontSize: 10, color: "#A1A5B7" }}>
-                        พ.ศ. 2562
-                      </div>
-                    </div>
-                  ) : null}
-                </div>
-              ) : null}
-
-              {/* รางวัล*/}
-              {checkshowReward ? (
-                <div style={{ marginBottom: 10 }}>
-                  <div
-                    style={{
-                      borderLeft: "1px solid",
-                      paddingLeft: 6,
-                      fontSize: 12,
-                      marginTop: 10,
-                    }}
-                  >
-                    เกียรติประวัติและรางวัลที่ได้รับ
-                  </div>
-                  {checkedReward1 ? (
-                    <div>
-                      <div style={{ fontSize: 11, marginTop: 5 }}>
-                        รางวัลชนะเลิศการนำเสนอผลงานวิจัย (ระดับบัณฑิตศึกษา)
-                      </div>
-                      <div style={{ fontSize: 10, color: "#A1A5B7" }}>
-                        พ.ศ. 2564
-                      </div>
-                    </div>
-                  ) : null}
-                  {checkedReward2 ? (
-                    <div>
-                      <div style={{ fontSize: 11, marginTop: 5 }}>
-                        รางวัลชนะเลิศการนำเสนอผลงานวิจัย (ระดับบัณฑิตศึกษา)
-                      </div>
-                      <div style={{ fontSize: 10, color: "#A1A5B7" }}>
-                        พ.ศ. 2564
-                      </div>
-                    </div>
-                  ) : null}
-                  {checkedReward3 ? (
-                    <div>
-                      <div style={{ fontSize: 11, marginTop: 5 }}>
-                        รางวัลชนะเลิศการนำเสนอผลงานวิจัย (ระดับบัณฑิตศึกษา)
-                      </div>
-                      <div style={{ fontSize: 10, color: "#A1A5B7" }}>
-                        พ.ศ. 2564
-                      </div>
-                    </div>
-                  ) : null}
-                  {checkedReward4 ? (
-                    <div>
-                      <div style={{ fontSize: 11, marginTop: 5 }}>
-                        รางวัลชนะเลิศการนำเสนอผลงานวิจัย (ระดับบัณฑิตศึกษา)
-                      </div>
-                      <div style={{ fontSize: 10, color: "#A1A5B7" }}>
-                        พ.ศ. 2564
-                      </div>
-                    </div>
-                  ) : null}
-                </div>
-              ) : null}
-
-              {/* Exp*/}
-
-              {checkshowExp ? (
-                <div style={{ marginBottom: 10 }}>
-                  <div
-                    style={{
-                      borderLeft: "1px solid",
-                      paddingLeft: 6,
-                      fontSize: 12,
-                      marginTop: 10,
-                    }}
-                  >
-                    เกียรติประวัติและรางวัลที่ได้รับ
-                  </div>
-                  {checkedExp1 ? (
-                    <div>
-                      <div style={{ fontSize: 11, marginTop: 5 }}>
-                        Clinical prediction of thoracic vertebrae fracture in
-                        traumatic injury patient.
-                      </div>
-                      <div style={{ fontSize: 10, color: "#A1A5B7" }}>
-                        1 ก.พ. 2566 - 1 ก.พ. 2566
-                      </div>
-                    </div>
-                  ) : null}
-                  {checkedExp2 ? (
-                    <div>
-                      <div style={{ fontSize: 11, marginTop: 5 }}>
-                        Clinical prediction of thoracic vertebrae fracture in
-                        traumatic injury patient.
-                      </div>
-                      <div style={{ fontSize: 10, color: "#A1A5B7" }}>
-                        1 ก.พ. 2566 - 1 ก.พ. 2566
-                      </div>
-                    </div>
-                  ) : null}
-                </div>
-              ) : null}
-            </div>
-
-            {/* งานวิจัย*/}
-
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                width: 140,
-              }}
-            >
-              <div style={{ marginTop: 20 }}>
-                {checkedShowContact ? (
-                  <div>
-                    <div
-                      style={{
-                        borderLeft: "1px solid",
-                        paddingLeft: 6,
-                        fontSize: 12,
-                        marginTop: 10,
-                      }}
-                    >
-                      ข้อมูลติดต่อ
-                    </div>
-                    <div style={{ fontSize: 11 }}>ที่อยู่:</div>
-                    <div style={{ fontSize: 11 }}>{watchValues.address}</div>
-                    <div style={{ fontSize: 11 }}>โทรศัพท์มือถือ:</div>
-                    <div style={{ fontSize: 11 }}>{watchValues.phone}</div>
-                    <div style={{ fontSize: 11 }}>อีเมล:</div>
-                    <div style={{ fontSize: 11 }}>{watchValues.email}</div>
-                  </div>
-                ) : null}
-
-                {/* งานวิจัย*/}
-                {checkedShowExpertise ? (
-                  <div>
-                    <div
-                      style={{
-                        borderLeft: "1px solid",
-                        paddingLeft: 6,
-                        fontSize: 12,
-                        marginTop: 10,
-                      }}
-                    >
-                      ความเชี่ยวชาญ
-                    </div>
-                    <div style={{ fontSize: 11 }}>{watchValues.Expertise}</div>
-                  </div>
-                ) : null}
-              </div>
-
-              {/* งานวิจัย*/}
-              {checkedShowCer ? (
-                <div>
-                  <div>cer</div>
-                  {checkCer1 ? (
-                    <div>
-                      <div>รางวัล1</div>
-                    </div>
-                  ) : null}
-                  {checkCer2 ? (
-                    <div>
-                      <div>รางวัล2</div>
-                    </div>
-                  ) : null}
-                  {checkCer3 ? (
-                    <div>
-                      <div>รางวัล3</div>
-                    </div>
-                  ) : null}
-                  {checkCer4 ? (
-                    <div>
-                      <div>รางวัล4</div>
-                    </div>
-                  ) : null}
-                  {checkCer5 ? (
-                    <div>
-                      <div>รางวัล5</div>
-                    </div>
-                  ) : null}
-                  {checkCer6 ? (
-                    <div>
-                      <div>รางวัล6</div>
-                    </div>
-                  ) : null}
-                  {checkCer7 ? (
-                    <div>
-                      <div>รางวัล7</div>
-                    </div>
-                  ) : null}
-                </div>
-              ) : null}
-
-              <div style={{ marginTop: 120, textAlign: "center" }}>
-                <Signer src={signer} alt="Signer" />
-                <div style={{ fontSize: 12 }}>นายอรรถพล อัศวเพชรฤกษ์</div>
-              </div>
-            </div>
-          </div>
-        </PreviewContainer>
-        {/* <PDFViewer showToolbar={false} width={503} height={709}>
-          <BasicDocument />
-        </PDFViewer> */}
->>>>>>> dev
       </FormContainer>
     </AppContainer>
   );
