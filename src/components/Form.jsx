@@ -3,8 +3,12 @@ import { useForm, Controller } from "react-hook-form";
 import styled from "styled-components";
 import profilePicUrl from "./preview-pdf/img/profile.svg";
 import BasicDocument from "./preview-pdf/pdf";
+<<<<<<< HEAD
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import avatar from "./preview-pdf/img/avatar.jpg";
+=======
+import { PDFDownloadLink } from "@react-pdf/renderer";
+>>>>>>> dev
 import logo from "./preview-pdf/img/logo.png";
 import signer from "./preview-pdf/img/signer.png";
 
@@ -336,6 +340,7 @@ const Signer = styled.img`
 const Dashboard = () => {
   const [profilePic, setProfilePic] = useState(null);
   const fileInputRef = useRef(null);
+<<<<<<< HEAD
   const { control, watch } = useForm();
   const watchedName = watch("name");
   const watchedPosition = watch("position");
@@ -369,6 +374,63 @@ const Dashboard = () => {
   const [checkedShowContact, setCheckedShowContact] = useState(false);
   const [checkedShowExpert, setCheckedShowExpert] = useState(false);
   const [checkedShowCer, setCheckedShowCer] = useState(false);
+=======
+  const { control, watch } = useForm({
+    name: "",
+    position: "",
+    description: "",
+    address: "",
+    phone: "",
+    email: "",
+    Expertise: "",
+    checkshowEducation: false,
+    checkedEdu: false,
+    checkshowResearch: false,
+    checkedResearch: false,
+    checkshowReward: false,
+    checkedReward1: false,
+    checkedReward2: false,
+    checkedReward3: false,
+    checkedReward4: false,
+    checkshowExp: false,
+    checkedExp1: false,
+    checkedExp2: false,
+    checkedShowContact: false,
+    checkShowCer: false,
+    checkedCer1: false,
+    checkedCer2: false,
+    checkedCer3: false,
+    checkedCer4: false,
+    checkedCer5: false,
+    checkedCer6: false,
+    checkedCer7: false,
+  });
+  const watchValues = watch();
+  const checkshowEducation = watch("checkshowEducation");
+  const checkedEdu = watch("checkedEdu");
+  const checkshowResearch = watch("checkshowResearch");
+  const checkedResearch = watch("checkedResearch");
+  const checkshowReward = watch("checkshowReward");
+  const checkedReward1 = watch("checkedReward1");
+  const checkedReward2 = watch("checkedReward2");
+  const checkedReward3 = watch("checkedReward3");
+  const checkedReward4 = watch("checkedReward4");
+  const checkshowExp = watch("checkshowExp");
+  const checkedExp1 = watch("checkedExp1");
+  const checkedExp2 = watch("checkedExp2");
+  const checkedShowContact = watch("checkedShowContact");
+  const checkedShowExpertise = watch("checkedShowExpertise");
+  const checkedShowCer = watch("checkShowCer");
+  const checkCer1 = watch("checkedCer1");
+  const checkCer2 = watch("checkedCer2");
+  const checkCer3 = watch("checkedCer3");
+  const checkCer4 = watch("checkedCer4");
+  const checkCer5 = watch("checkedCer5");
+  const checkCer6 = watch("checkedCer6");
+  const checkCer7 = watch("checkedCer7");
+
+  const [checkedShowprofile, setCheckedShowprofile] = useState(false);
+>>>>>>> dev
 
   const handleProfilePicChange = (event) => {
     const file = event.target.files[0];
@@ -403,6 +465,7 @@ const Dashboard = () => {
     }
   };
 
+<<<<<<< HEAD
   const handleCheckEduChange = (event) => {
     setCheckedEdu(event.target.checked);
   };
@@ -499,6 +562,10 @@ const Dashboard = () => {
     name: watchedName,
     position: watchedPosition,
     desc: watchedDescription,
+=======
+  const handleShowProfile = (event) => {
+    setCheckedShowprofile(event.target.checked);
+>>>>>>> dev
   };
 
   return (
@@ -568,20 +635,31 @@ const Dashboard = () => {
           <CardHeader>
             <HeaderText>ประวัติการศึกษา</HeaderText>
             <CheckboxShow>
+<<<<<<< HEAD
               <ShowButton
                 type="checkbox"
                 checked={checkshowEducation}
                 onChange={handleShowEduhistory}
+=======
+              <Controller
+                name="checkshowEducation"
+                control={control}
+                render={({ field }) => (
+                  <ShowButton type="checkbox" {...field} />
+                )}
+>>>>>>> dev
               />
               แสดง
             </CheckboxShow>
           </CardHeader>
           <Datacontainer>
             <CheckboxRow>
-              <CheckboxContent
-                type="checkbox"
-                checked={checkedEdu}
-                onChange={handleCheckEduChange}
+              <Controller
+                name="checkedEdu"
+                control={control}
+                render={({ field }) => (
+                  <CheckboxContent type="checkbox" {...field} />
+                )}
               />
               <CheckboxData>
                 <Checkboxtext>มัธยมปลาย, ศิลศาตร์</Checkboxtext>
@@ -596,20 +674,24 @@ const Dashboard = () => {
           <CardHeader>
             <HeaderText>ผลงานวิจัยและบทความตีพิมพ์</HeaderText>
             <CheckboxShow>
-              <ShowButton
-                type="checkbox"
-                checked={checkedShowResearch}
-                onChange={handleShowResearch}
+              <Controller
+                name="checkshowResearch"
+                control={control}
+                render={({ field }) => (
+                  <ShowButton type="checkbox" {...field} />
+                )}
               />
               แสดง
             </CheckboxShow>
           </CardHeader>
           <Datacontainer>
             <CheckboxLongRow>
-              <CheckboxButton
-                type="checkbox"
-                checked={checkedResearch}
-                onChange={handleCheckResearchChange}
+              <Controller
+                name="checkedResearch"
+                control={control}
+                render={({ field }) => (
+                  <CheckboxContent type="checkbox" {...field} />
+                )}
               />
               <Checkboxtext>
                 การแพร่กระจายของการติดเชื้อในผู้ป่วยที่ปลูกถ่ายไขกระดูกและผ่าตัดเปลี่ยนไตในผู้ป่วยไตวายเรื้อรังระยะสุดท้าย
@@ -623,20 +705,24 @@ const Dashboard = () => {
           <CardHeader>
             <HeaderText>รางวัล</HeaderText>
             <CheckboxShow>
-              <ShowButton
-                type="checkbox"
-                checked={checkedShowReward}
-                onChange={handleShowReward}
+              <Controller
+                name="checkshowReward"
+                control={control}
+                render={({ field }) => (
+                  <ShowButton type="checkbox" {...field} />
+                )}
               />
               แสดง
             </CheckboxShow>
           </CardHeader>
           <Datacontainer>
             <CheckboxRow>
-              <CheckboxContent
-                type="checkbox"
-                checked={checkedReward1}
-                onChange={handleCheckRewardChange1}
+              <Controller
+                name="checkedReward1"
+                control={control}
+                render={({ field }) => (
+                  <CheckboxContent type="checkbox" {...field} />
+                )}
               />
               <CheckboxData>
                 <Checkboxtext>
@@ -648,10 +734,12 @@ const Dashboard = () => {
           </Datacontainer>
           <Datacontainer>
             <CheckboxRow>
-              <CheckboxContent
-                type="checkbox"
-                checked={checkedReward2}
-                onChange={handleCheckRewardChange2}
+              <Controller
+                name="checkedReward2"
+                control={control}
+                render={({ field }) => (
+                  <CheckboxContent type="checkbox" {...field} />
+                )}
               />
               <CheckboxData>
                 <Checkboxtext>
@@ -663,10 +751,12 @@ const Dashboard = () => {
           </Datacontainer>
           <Datacontainer>
             <CheckboxRow>
-              <CheckboxContent
-                type="checkbox"
-                checked={checkedReward3}
-                onChange={handleCheckRewardChange3}
+              <Controller
+                name="checkedReward3"
+                control={control}
+                render={({ field }) => (
+                  <CheckboxContent type="checkbox" {...field} />
+                )}
               />
               <CheckboxData>
                 <Checkboxtext>
@@ -678,10 +768,12 @@ const Dashboard = () => {
           </Datacontainer>
           <Datacontainer>
             <CheckboxRow>
-              <CheckboxContent
-                type="checkbox"
-                checked={checkedReward4}
-                onChange={handleCheckRewardChange4}
+              <Controller
+                name="checkedReward4"
+                control={control}
+                render={({ field }) => (
+                  <CheckboxContent type="checkbox" {...field} />
+                )}
               />
               <CheckboxData>
                 <Checkboxtext>
@@ -697,20 +789,24 @@ const Dashboard = () => {
           <CardHeader>
             <HeaderText>เพิ่มพูนประสบการณ์</HeaderText>
             <CheckboxShow>
-              <ShowButton
-                type="checkbox"
-                checked={checkedShowExp}
-                onChange={handleShowExp}
+              <Controller
+                name="checkshowExp"
+                control={control}
+                render={({ field }) => (
+                  <ShowButton type="checkbox" {...field} />
+                )}
               />
               แสดง
             </CheckboxShow>
           </CardHeader>
           <Datacontainer>
             <CheckboxLongRow>
-              <CheckboxButton
-                type="checkbox"
-                checked={checkedExp1}
-                onChange={handleCheckExpChange1}
+              <Controller
+                name="checkedExp1"
+                control={control}
+                render={({ field }) => (
+                  <CheckboxButton type="checkbox" {...field} />
+                )}
               />
               <Checkboxtext>
                 Clinical prediction of thoracic vertebrae fracture in traumatic
@@ -721,10 +817,12 @@ const Dashboard = () => {
           </Datacontainer>
           <Datacontainer>
             <CheckboxLongRow>
-              <CheckboxButton
-                type="checkbox"
-                checked={checkedExp2}
-                onChange={handleCheckExpChange2}
+              <Controller
+                name="checkedExp2"
+                control={control}
+                render={({ field }) => (
+                  <CheckboxButton type="checkbox" {...field} />
+                )}
               />
               <Checkboxtext>
                 Clinical prediction of thoracic vertebrae fracture in traumatic
@@ -739,10 +837,12 @@ const Dashboard = () => {
           <CardHeader>
             <HeaderText>ข้อมูลการติดต่อ</HeaderText>
             <CheckboxShow>
-              <ShowButton
-                type="checkbox"
-                checked={checkedShowContact}
-                onChange={handleShowContact}
+              <Controller
+                name="checkedShowContact"
+                control={control}
+                render={({ field }) => (
+                  <ShowButton type="checkbox" {...field} />
+                )}
               />
               แสดง
             </CheckboxShow>
@@ -777,10 +877,12 @@ const Dashboard = () => {
           <CardHeader>
             <HeaderText>ความเชี่ยวชาญ</HeaderText>
             <CheckboxShow>
-              <ShowButton
-                type="checkbox"
-                checked={checkedShowExpert}
-                onChange={handleShowExpert}
+              <Controller
+                name="checkedShowExpertise"
+                control={control}
+                render={({ field }) => (
+                  <ShowButton type="checkbox" {...field} />
+                )}
               />
               แสดง
             </CheckboxShow>
@@ -796,20 +898,24 @@ const Dashboard = () => {
           <CardHeader>
             <HeaderText>ใบรับรองและใบอนุญาต</HeaderText>
             <CheckboxShow>
-              <ShowButton
-                type="checkbox"
-                checked={checkedShowCer}
-                onChange={handleShowCer}
+              <Controller
+                name="checkShowCer"
+                control={control}
+                render={({ field }) => (
+                  <ShowButton type="checkbox" {...field} />
+                )}
               />
               แสดง
             </CheckboxShow>
           </CardHeader>
           <Datacontainer>
             <CheckboxRow>
-              <CheckboxContent
-                type="checkbox"
-                checked={checkedCertificate}
-                onChange={handleCheckCertificateChange}
+              <Controller
+                name="checkedCer1"
+                control={control}
+                render={({ field }) => (
+                  <CheckboxContent type="checkbox" {...field} />
+                )}
               />
               <CheckboxData>
                 <Checkboxtext>
@@ -821,10 +927,12 @@ const Dashboard = () => {
           </Datacontainer>
           <Datacontainer>
             <CheckboxRow>
-              <CheckboxContent
-                type="checkbox"
-                checked={checkedCertificate2}
-                onChange={handleCheckCertificateChange2}
+              <Controller
+                name="checkedCer2"
+                control={control}
+                render={({ field }) => (
+                  <CheckboxContent type="checkbox" {...field} />
+                )}
               />
               <CheckboxData>
                 <Checkboxtext>
@@ -836,10 +944,12 @@ const Dashboard = () => {
           </Datacontainer>
           <Datacontainer>
             <CheckboxRow>
-              <CheckboxContent
-                type="checkbox"
-                checked={checkedCertificate3}
-                onChange={handleCheckCertificateChange3}
+              <Controller
+                name="checkedCer3"
+                control={control}
+                render={({ field }) => (
+                  <CheckboxContent type="checkbox" {...field} />
+                )}
               />
               <CheckboxData>
                 <Checkboxtext>ใบประกอบวิชาชีพ ()</Checkboxtext>
@@ -849,10 +959,12 @@ const Dashboard = () => {
           </Datacontainer>
           <Datacontainer>
             <CheckboxRow>
-              <CheckboxContent
-                type="checkbox"
-                checked={checkedCertificate4}
-                onChange={handleCheckCertificateChange4}
+              <Controller
+                name="checkedCer4"
+                control={control}
+                render={({ field }) => (
+                  <CheckboxContent type="checkbox" {...field} />
+                )}
               />
               <CheckboxData>
                 <Checkboxtext>ใบประกอบวิชาชีพ ()</Checkboxtext>
@@ -862,10 +974,12 @@ const Dashboard = () => {
           </Datacontainer>
           <Datacontainer>
             <CheckboxRow>
-              <CheckboxContent
-                type="checkbox"
-                checked={checkedCertificate5}
-                onChange={handleCheckCertificateChange5}
+              <Controller
+                name="checkedCer5"
+                control={control}
+                render={({ field }) => (
+                  <CheckboxContent type="checkbox" {...field} />
+                )}
               />
               <CheckboxData>
                 <Checkboxtext>ใบประกอบวิชาชีพ ()</Checkboxtext>
@@ -875,10 +989,12 @@ const Dashboard = () => {
           </Datacontainer>
           <Datacontainer>
             <CheckboxRow>
-              <CheckboxContent
-                type="checkbox"
-                checked={checkedCertificate6}
-                onChange={handleCheckCertificateChange6}
+              <Controller
+                name="checkedCer6"
+                control={control}
+                render={({ field }) => (
+                  <CheckboxContent type="checkbox" {...field} />
+                )}
               />
               <CheckboxData>
                 <Checkboxtext>ประมวลวิชาเวชศาสตร์ที่ 1</Checkboxtext>
@@ -891,10 +1007,12 @@ const Dashboard = () => {
           </Datacontainer>
           <Datacontainer>
             <CheckboxRow>
-              <CheckboxContent
-                type="checkbox"
-                checked={checkedCertificate7}
-                onChange={handleCheckCertificateChange7}
+              <Controller
+                name="checkedCer7"
+                control={control}
+                render={({ field }) => (
+                  <CheckboxContent type="checkbox" {...field} />
+                )}
               />
               <CheckboxData>
                 <Checkboxtext>ประมวลวิชาเวชศาสตร์ที่ 2</Checkboxtext>
@@ -908,6 +1026,11 @@ const Dashboard = () => {
         </div>
       </FormContainer>
 
+<<<<<<< HEAD
+=======
+      {/*Preview PDF */}
+
+>>>>>>> dev
       <FormContainer>
         <Flex>
           <Header>ตัวอย่าง</Header>
@@ -917,9 +1040,302 @@ const Dashboard = () => {
         </Flex>
         <Subdate>แก้ไขล่าสุด: 5 สิงหาคม 2567 เวลา 20:36</Subdate>
         <hr style={{ marginBottom: 15 }}></hr>
+<<<<<<< HEAD
         <PDFViewer showToolbar={false} width={503} height={709}>
           <BasicDocument data={data} />
         </PDFViewer>
+=======
+        <PreviewContainer>
+          <div style={{ display: "flex", marginBottom: 10 }}>
+            {checkedShowprofile ? (
+              <div>
+                <Avatar src={profilePic || profilePicUrl} />
+              </div>
+            ) : null}
+            <div style={{ marginLeft: 10 }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  width: 420,
+                }}
+              >
+                <div>
+                  <div style={{ fontSize: 13, fontWeight: "bold" }}>
+                    {watchValues.name}
+                  </div>
+                  <div style={{ fontSize: 10, fontWeight: "bold" }}>
+                    {watchValues.position}
+                  </div>
+                </div>
+                <Logo src={logo} alt="Logo" />
+              </div>
+              <div style={{ marginTop: 5 }}>
+                <div style={{ fontSize: 8, fontWeight: "bold" }}>
+                  {watchValues.description}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* การศึกษา*/}
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div
+              style={{
+                borderTop: "1px solid #ebe7e7",
+                paddingTop: 10,
+              }}
+            >
+              {checkshowEducation ? (
+                <div style={{ marginBottom: 10 }}>
+                  <div
+                    style={{
+                      borderLeft: "1px solid ",
+                      paddingLeft: 6,
+                      fontSize: 12,
+                      marginTop: 10,
+                    }}
+                  >
+                    ประวัติการศึกษา
+                  </div>
+                  {checkedEdu ? (
+                    <div>
+                      <div style={{ fontSize: 11, marginTop: 5 }}>
+                        มัธยมปลาย, ศิลศาตร์
+                      </div>
+                      <div style={{ fontSize: 10, color: "#A1A5B7" }}>
+                        พ.ศ. 14 เม.ย. 2559 - 14 เม.ย. 2565
+                      </div>
+                      <div style={{ fontSize: 9 }}>เกรดเฉลี่ยสะสม 3.45 สาย</div>
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
+
+              {/* งานวิจัย*/}
+              {checkshowResearch ? (
+                <div style={{ marginBottom: 10 }}>
+                  <div
+                    style={{
+                      borderLeft: "1px solid",
+                      paddingLeft: 6,
+                      fontSize: 12,
+                      marginTop: 10,
+                    }}
+                  >
+                    ผลงานวิจัยและบทความตีพิมพ์
+                  </div>
+                  {checkedResearch ? (
+                    <div>
+                      <div style={{ fontSize: 11, marginTop: 5 }}>
+                        การแพร่กระจายของการติดเชื้อในผู้ป่วยที่ปลูกถ่ายไขกระดูกและผ่าตัดเปลี่ยนไตในผู้ป่วยไตวายเรื้อรังระยะสุดท้าย
+                      </div>
+                      <div style={{ fontSize: 10, color: "#A1A5B7" }}>
+                        พ.ศ. 2562
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
+
+              {/* รางวัล*/}
+              {checkshowReward ? (
+                <div style={{ marginBottom: 10 }}>
+                  <div
+                    style={{
+                      borderLeft: "1px solid",
+                      paddingLeft: 6,
+                      fontSize: 12,
+                      marginTop: 10,
+                    }}
+                  >
+                    เกียรติประวัติและรางวัลที่ได้รับ
+                  </div>
+                  {checkedReward1 ? (
+                    <div>
+                      <div style={{ fontSize: 11, marginTop: 5 }}>
+                        รางวัลชนะเลิศการนำเสนอผลงานวิจัย (ระดับบัณฑิตศึกษา)
+                      </div>
+                      <div style={{ fontSize: 10, color: "#A1A5B7" }}>
+                        พ.ศ. 2564
+                      </div>
+                    </div>
+                  ) : null}
+                  {checkedReward2 ? (
+                    <div>
+                      <div style={{ fontSize: 11, marginTop: 5 }}>
+                        รางวัลชนะเลิศการนำเสนอผลงานวิจัย (ระดับบัณฑิตศึกษา)
+                      </div>
+                      <div style={{ fontSize: 10, color: "#A1A5B7" }}>
+                        พ.ศ. 2564
+                      </div>
+                    </div>
+                  ) : null}
+                  {checkedReward3 ? (
+                    <div>
+                      <div style={{ fontSize: 11, marginTop: 5 }}>
+                        รางวัลชนะเลิศการนำเสนอผลงานวิจัย (ระดับบัณฑิตศึกษา)
+                      </div>
+                      <div style={{ fontSize: 10, color: "#A1A5B7" }}>
+                        พ.ศ. 2564
+                      </div>
+                    </div>
+                  ) : null}
+                  {checkedReward4 ? (
+                    <div>
+                      <div style={{ fontSize: 11, marginTop: 5 }}>
+                        รางวัลชนะเลิศการนำเสนอผลงานวิจัย (ระดับบัณฑิตศึกษา)
+                      </div>
+                      <div style={{ fontSize: 10, color: "#A1A5B7" }}>
+                        พ.ศ. 2564
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
+
+              {/* Exp*/}
+
+              {checkshowExp ? (
+                <div style={{ marginBottom: 10 }}>
+                  <div
+                    style={{
+                      borderLeft: "1px solid",
+                      paddingLeft: 6,
+                      fontSize: 12,
+                      marginTop: 10,
+                    }}
+                  >
+                    เกียรติประวัติและรางวัลที่ได้รับ
+                  </div>
+                  {checkedExp1 ? (
+                    <div>
+                      <div style={{ fontSize: 11, marginTop: 5 }}>
+                        Clinical prediction of thoracic vertebrae fracture in
+                        traumatic injury patient.
+                      </div>
+                      <div style={{ fontSize: 10, color: "#A1A5B7" }}>
+                        1 ก.พ. 2566 - 1 ก.พ. 2566
+                      </div>
+                    </div>
+                  ) : null}
+                  {checkedExp2 ? (
+                    <div>
+                      <div style={{ fontSize: 11, marginTop: 5 }}>
+                        Clinical prediction of thoracic vertebrae fracture in
+                        traumatic injury patient.
+                      </div>
+                      <div style={{ fontSize: 10, color: "#A1A5B7" }}>
+                        1 ก.พ. 2566 - 1 ก.พ. 2566
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
+            </div>
+
+            {/* งานวิจัย*/}
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                width: 140,
+              }}
+            >
+              <div style={{ marginTop: 20 }}>
+                {checkedShowContact ? (
+                  <div>
+                    <div
+                      style={{
+                        borderLeft: "1px solid",
+                        paddingLeft: 6,
+                        fontSize: 12,
+                        marginTop: 10,
+                      }}
+                    >
+                      ข้อมูลติดต่อ
+                    </div>
+                    <div style={{ fontSize: 11 }}>ที่อยู่:</div>
+                    <div style={{ fontSize: 11 }}>{watchValues.address}</div>
+                    <div style={{ fontSize: 11 }}>โทรศัพท์มือถือ:</div>
+                    <div style={{ fontSize: 11 }}>{watchValues.phone}</div>
+                    <div style={{ fontSize: 11 }}>อีเมล:</div>
+                    <div style={{ fontSize: 11 }}>{watchValues.email}</div>
+                  </div>
+                ) : null}
+
+                {/* งานวิจัย*/}
+                {checkedShowExpertise ? (
+                  <div>
+                    <div
+                      style={{
+                        borderLeft: "1px solid",
+                        paddingLeft: 6,
+                        fontSize: 12,
+                        marginTop: 10,
+                      }}
+                    >
+                      ความเชี่ยวชาญ
+                    </div>
+                    <div style={{ fontSize: 11 }}>{watchValues.Expertise}</div>
+                  </div>
+                ) : null}
+              </div>
+
+              {/* งานวิจัย*/}
+              {checkedShowCer ? (
+                <div>
+                  <div>cer</div>
+                  {checkCer1 ? (
+                    <div>
+                      <div>รางวัล1</div>
+                    </div>
+                  ) : null}
+                  {checkCer2 ? (
+                    <div>
+                      <div>รางวัล2</div>
+                    </div>
+                  ) : null}
+                  {checkCer3 ? (
+                    <div>
+                      <div>รางวัล3</div>
+                    </div>
+                  ) : null}
+                  {checkCer4 ? (
+                    <div>
+                      <div>รางวัล4</div>
+                    </div>
+                  ) : null}
+                  {checkCer5 ? (
+                    <div>
+                      <div>รางวัล5</div>
+                    </div>
+                  ) : null}
+                  {checkCer6 ? (
+                    <div>
+                      <div>รางวัล6</div>
+                    </div>
+                  ) : null}
+                  {checkCer7 ? (
+                    <div>
+                      <div>รางวัล7</div>
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
+
+              <div style={{ marginTop: 120, textAlign: "center" }}>
+                <Signer src={signer} alt="Signer" />
+                <div style={{ fontSize: 12 }}>นายอรรถพล อัศวเพชรฤกษ์</div>
+              </div>
+            </div>
+          </div>
+        </PreviewContainer>
+        {/* <PDFViewer showToolbar={false} width={503} height={709}>
+          <BasicDocument />
+        </PDFViewer> */}
+>>>>>>> dev
       </FormContainer>
     </AppContainer>
   );

@@ -1,12 +1,9 @@
 import React from "react";
 import Dashboard from "./components/Form";
+import CardPreview from "./components/preview-pdf/preview";
 
 function App() {
-  return (
-      <div>
-        <Dashboard />
-    </div>
-  );
+  return <Dashboard />;
 }
 
 export default App;
