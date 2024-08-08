@@ -1,30 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 import BasicDocument from "./pdf";
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import avatar from "./img/avatar.jpg";
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import logo from "./img/logo.png";
 import signer from "./img/signer.png";
 
-const AppContainer = styled.div`
-  height: 100%;
-  width: 60%;
-`;
+const AppContainer = styled.div``;
 const FormContainer = styled.div`
   background: white;
   padding: 32px;
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  width: 60%;
-  height: 80%;
-  max-width: 800px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 `;
 const Header = styled.label`
   font-size: 16px;
 `;
 const Subdate = styled.label`
   font-size: 11px;
-  border-bottom: 1px solid gray;
 `;
 const Flex = styled.div`
   display: flex;
@@ -49,8 +41,10 @@ const DownloadButton = styled.button`
 `;
 
 const PreviewContainer = styled.div`
-  width: 525px;
-  height: 743px;
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  aspect-ratio: 1 / 1.414;
   background-color: #f5f5f5;
   padding: 20px;
   margin: 0 auto;
@@ -78,21 +72,21 @@ const CardPreview = () => {
       <FormContainer>
         <Flex>
           <Header>ตัวอย่าง</Header>
-          <PDFDownloadLink document={<BasicDocument />} fileName="porttest.pdf">
-            <DownloadButton>ส่งคำร้อง</DownloadButton>
-          </PDFDownloadLink>
+          {/* <PDFDownloadLink document={<BasicDocument />} fileName="porttest.pdf"> */}
+          <DownloadButton>ส่งคำร้อง</DownloadButton>
+          {/* </PDFDownloadLink> */}
         </Flex>
         <Subdate>แก้ไขล่าสุด: 5 สิงหาคม 2567 เวลา 20:36</Subdate>
         <hr style={{ marginBottom: 15 }}></hr>
         <PreviewContainer>
           <div style={{ display: "flex", marginBottom: 10 }}>
-            <Avatar src={avatar} alt="Avatar" />
+            <Avatar src={profilePic} alt="Avatar" />
             <div style={{ marginLeft: 10 }}>
               <div
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
-                  width: 420,
+                  width: 360,
                 }}>
                 <div>
                   <div style={{ fontSize: 13, fontWeight: "bold" }}>Name</div>
@@ -143,8 +137,20 @@ const CardPreview = () => {
                   }}>
                   ประสบการณ์
                 </div>
-                <div style={{ fontSize: 10, color: "#A1A5B7" }}>พ.ศ.</div>
-                <div style={{ fontSize: 10, color: "#A1A5B7" }}>พ.ศ.</div>
+                <div style={{ fontSize: 11, marginTop: 5 }}>
+                  Clinical prediction of thoracic vertebrae fracture in
+                  traumatic injury patient.
+                </div>
+                <div style={{ fontSize: 10, color: "#A1A5B7" }}>
+                  1 ก.พ. 2566 - 1 ก.พ. 2566
+                </div>
+                <div style={{ fontSize: 11, marginTop: 5 }}>
+                  Clinical prediction of thoracic vertebrae fracture in
+                  traumatic injury patient.
+                </div>
+                <div style={{ fontSize: 10, color: "#A1A5B7" }}>
+                  1 ก.พ. 2566 - 1 ก.พ. 2566
+                </div>
               </div>
               <div style={{ marginBottom: 10 }}>
                 <div
@@ -183,6 +189,10 @@ const CardPreview = () => {
                   }}>
                   บทความตีพิมพ์
                 </div>
+                <div style={{ fontSize: 11, marginTop: 5 }}>
+                  การแพร่กระจายของการติดเชื้อในผู้ป่วยที่ปลูกถ่ายไขกระดูกและผ่าตัดเปลี่ยนไตในผู้ป่วยไตวายเรื้อรังระยะสุดท้าย
+                </div>
+                <div style={{ fontSize: 10, color: "#A1A5B7" }}>พ.ศ. 2562</div>
               </div>
             </div>
             <div
@@ -233,9 +243,9 @@ const CardPreview = () => {
             </div>
           </div>
         </PreviewContainer>
-        {/* <PDFViewer showToolbar={false} width={503} height={709}>
+        <PDFViewer showToolbar={false} width={503} height={709}>
           <BasicDocument />
-        </PDFViewer> */}
+        </PDFViewer>
       </FormContainer>
     </AppContainer>
   );
