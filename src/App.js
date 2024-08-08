@@ -1,10 +1,9 @@
-// import "./App.css";
-// import Dashboard from "./components/Form";
-import Testuseform from "./components/useform";
-// import BasicDocument from "./components/preview-pdf/preview";
+import React from "react";
+import Dashboard from "./components/Form";
+import CardPreview from "./components/preview-pdf/preview";
 
 function App() {
-  return <Testuseform />;
+  return <Dashboard />;
 }
 
 export default App;
