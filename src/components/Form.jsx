@@ -1,6 +1,12 @@
 import React, { useState, useRef } from "react";
+import { useForm, Controller } from "react-hook-form";
 import styled from "styled-components";
 import profilePicUrl from "./preview-pdf/img/profile.svg";
+import BasicDocument from "./preview-pdf/pdf";
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
+import avatar from "./preview-pdf/img/avatar.jpg";
+import logo from "./preview-pdf/img/logo.png";
+import signer from "./preview-pdf/img/signer.png";
 
 const AppContainer = styled.div`
   height: 100%;
@@ -274,9 +280,71 @@ const ProfilePicAboutText = styled.div`
   font-size: 16px;
 `;
 
+const Header = styled.label`
+  font-size: 16px;
+`;
+const Subdate = styled.label`
+  font-size: 11px;
+  border-bottom: 1px solid gray;
+`;
+const Flex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const DownloadButton = styled.button`
+  background: #0056b3;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: "FC-Iconic", sans-serif;
+  font-weight: normal;
+
+  &:hover {
+    background: #004494;
+  }
+`;
+
+const PreviewContainer = styled.div`
+  width: 525px;
+  height: 743px;
+  background-color: #f5f5f5;
+  padding: 20px;
+  margin: 0 auto;
+`;
+
+const Avatar = styled.img`
+  width: 60px;
+  height: 60px;
+  margin-left: 5px;
+`;
+
+const Logo = styled.img`
+  width: 50px;
+  height: 40px;
+`;
+
+const Signer = styled.img`
+  width: 100px;
+  height: 60px;
+`;
+
 const Dashboard = () => {
   const [profilePic, setProfilePic] = useState(null);
   const fileInputRef = useRef(null);
+  const { control, watch } = useForm();
+  const watchedName = watch("name");
+  const watchedPosition = watch("position");
+  const watchedDescription = watch("description");
+  const watchedAddress = watch("address");
+  const watchedPhone = watch("phone");
+  const watchedEmail = watch("email");
+  const watchedExpert = watch("Expertise");
+
   const [checkedEdu, setCheckedEdu] = useState(false);
   const [checkedResearch, setCheckedResearch] = useState(false);
   const [checkedReward1, setCheckedReward1] = useState(false);
@@ -294,7 +362,7 @@ const Dashboard = () => {
   const [checkedCertificate7, setCheckedCertificate7] = useState(false);
 
   const [checkedShowprofile, setCheckedShowprofile] = useState(false);
-  const [checkedEduhistory, setCheckedEduhistory] = useState(false);
+  const [checkshowEducation, setcheckshowEducation] = useState(false);
   const [checkedShowResearch, setCheckedShowResearch] = useState(false);
   const [checkedShowReward, setCheckedShowReward] = useState(false);
   const [checkedShowExp, setCheckedShowExp] = useState(false);
@@ -337,276 +405,100 @@ const Dashboard = () => {
 
   const handleCheckEduChange = (event) => {
     setCheckedEdu(event.target.checked);
-    if (event.target.checked) {
-      console.log({
-        text: "มัธยมปลาย, ศิลศาตร์",
-        year: "พ.ศ. 2565",
-        grade: "เกรดเฉลี่ย 3.45",
-      });
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleCheckResearchChange = (event) => {
     setCheckedResearch(event.target.checked);
-    if (event.target.checked) {
-      console.log({
-        text: "การแพร่กระจายของการติดเชื้อในผู้ป่วยที่ปลูกถ่ายไขกระดูกและผ่าตัดเปลี่ยนไตในผู้ป่วยไตวายเรื้อรังระยะสุดท้าย",
-        year: "พ.ศ. 2562",
-      });
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleCheckRewardChange1 = (event) => {
     setCheckedReward1(event.target.checked);
-    if (event.target.checked) {
-      console.log({
-        text: "รางวัลชนะเลิศการนำเสนอผลงานวิจัย (ระดับบัณฑิตศึกษา)",
-        year: "1 ก.พ. 2566",
-      });
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleCheckRewardChange2 = (event) => {
     setCheckedReward2(event.target.checked);
-    if (event.target.checked) {
-      console.log({
-        text: "รางวัลชนะเลิศการนำเสนอผลงานวิจัย (ระดับบัณฑิตศึกษา)",
-        year: "1 ก.พ. 2566",
-      });
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleCheckRewardChange3 = (event) => {
     setCheckedReward3(event.target.checked);
-    if (event.target.checked) {
-      console.log({
-        text: "รางวัลชนะเลิศการนำเสนอผลงานวิจัย (ระดับบัณฑิตศึกษา)",
-        year: "1 ก.พ. 2566",
-      });
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleCheckRewardChange4 = (event) => {
     setCheckedReward4(event.target.checked);
-    if (event.target.checked) {
-      console.log({
-        text: "รางวัลชนะเลิศการนำเสนอผลงานวิจัย (ระดับบัณฑิตศึกษา)",
-        year: "1 ก.พ. 2566",
-      });
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleCheckExpChange1 = (event) => {
     setCheckedExp1(event.target.checked);
-    if (event.target.checked) {
-      console.log({
-        text: "Clinical prediction of thoracic vertebrae fracture intraumatic injury patient.",
-        year: "1 ก.พ. 2566 - 1 ก.พ. 2566",
-      });
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleCheckExpChange2 = (event) => {
     setCheckedExp2(event.target.checked);
-    if (event.target.checked) {
-      console.log({
-        text: "Clinical prediction of thoracic vertebrae fracture in traumatic injury patient.",
-        year: "1 ก.พ. 2566 - 1 ก.พ. 2566",
-      });
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleCheckCertificateChange = (event) => {
     setCheckedCertificate(event.target.checked);
-    if (event.target.checked) {
-      console.log({
-        text: "ใบประกอบวิชาชีพ (ขั้นตอนที่ 2 (NL step II))",
-        grade: "260 คะแนน (ร้อยละ 80.5)",
-      });
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleCheckCertificateChange2 = (event) => {
     setCheckedCertificate2(event.target.checked);
-    if (event.target.checked) {
-      console.log({
-        text: "ใบประกอบวิชาชีพ (ขั้นตอนที่ 2 (NL step II))",
-        grade: "260 คะแนน (ร้อยละ 80.5)",
-      });
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleCheckCertificateChange3 = (event) => {
     setCheckedCertificate3(event.target.checked);
-    if (event.target.checked) {
-      console.log({
-        text: "ใบประกอบวิชาชีพ ()",
-        grade: "260 คะแนน (ร้อยละ)",
-      });
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleCheckCertificateChange4 = (event) => {
     setCheckedCertificate4(event.target.checked);
-    if (event.target.checked) {
-      console.log({
-        text: "ใบประกอบวิชาชีพ ()",
-        grade: "260 คะแนน (ร้อยละ)",
-      });
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleCheckCertificateChange5 = (event) => {
     setCheckedCertificate5(event.target.checked);
-    if (event.target.checked) {
-      console.log({
-        text: "ใบประกอบวิชาชีพ ()",
-        grade: "260 คะแนน (ร้อยละ)",
-      });
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleCheckCertificateChange6 = (event) => {
     setCheckedCertificate6(event.target.checked);
-    if (event.target.checked) {
-      console.log({
-        text: "ประมวลวิชาเวชศาสตร์ที่ 1",
-        grade:
-          "ครั้งที่ 1 279.5 คะแนน(ร้อยละ55.5), ครั้งที่ 2 279.5 คะแนน (ร้อยละ 55.5)",
-      });
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleCheckCertificateChange7 = (event) => {
     setCheckedCertificate7(event.target.checked);
-    if (event.target.checked) {
-      console.log({
-        text: "ประมวลวิชาเวชศาสตร์ที่ 2",
-        grade:
-          "ครั้งที่ 1 279.5 คะแนน(ร้อยละ55.5), ครั้งที่ 2 279.5 คะแนน (ร้อยละ 55.5)",
-      });
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleShowProfile = (event) => {
     setCheckedShowprofile(event.target.checked);
-    if (event.target.checked) {
-      console.log("Show profile");
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleShowEduhistory = (event) => {
-    setCheckedEduhistory(event.target.checked);
-    if (event.target.checked) {
-      console.log("Show Edu");
-    } else {
-      console.log("Checkbox unchecked");
-    }
+    setcheckshowEducation(event.target.checked);
   };
 
   const handleShowResearch = (event) => {
     setCheckedShowResearch(event.target.checked);
-    if (event.target.checked) {
-      console.log("Show research");
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleShowReward = (event) => {
     setCheckedShowReward(event.target.checked);
-    if (event.target.checked) {
-      console.log("Show reward");
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleShowExp = (event) => {
     setCheckedShowExp(event.target.checked);
-    if (event.target.checked) {
-      console.log("Show exp");
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleShowContact = (event) => {
     setCheckedShowContact(event.target.checked);
-    if (event.target.checked) {
-      console.log("Show contact");
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleShowExpert = (event) => {
     setCheckedShowExpert(event.target.checked);
-    if (event.target.checked) {
-      console.log("Show Expert");
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
 
   const handleShowCer = (event) => {
     setCheckedShowCer(event.target.checked);
-    if (event.target.checked) {
-      console.log("Show Certificate");
-    } else {
-      console.log("Checkbox unchecked");
-    }
   };
-
-  const [formData, setFormData] = useState({
-    name: "",
-    position: "",
-    description: "",
-    address: "",
-    phone: "",
-    email: "",
-    Expertise: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-    console.log(`${name}: ${value}`);
+  console.log("รูป", profilePic);
+  const data = {
+    name: watchedName,
+    position: watchedPosition,
+    desc: watchedDescription,
   };
 
   return (
@@ -649,29 +541,26 @@ const Dashboard = () => {
         </ProfilePicContainer>
         <div>
           <Nametxt>ชื่อ</Nametxt>
-          <InputContainer
-            placeholder="ชื่อ-นามสกุล"
+          <Controller
             name="name"
-            value={formData.name}
-            onChange={handleChange}
+            control={control}
+            render={({ field }) => <InputTextContainer {...field} />}
           />
         </div>
         <div>
           <Nametxt>ตำแหน่ง</Nametxt>
-          <InputContainer
-            placeholder="ตำแหน่ง"
+          <Controller
             name="position"
-            value={formData.position}
-            onChange={handleChange}
+            control={control}
+            render={({ field }) => <InputTextContainer {...field} />}
           />
         </div>
         <div>
           <Nametxt>อธิบายสั้นๆเกี่ยวกับตัวคุณ</Nametxt>
-          <InputTextContainer
-            placeholder="อธิบายสั้นๆเกี่ยวกับตัวคุณ"
+          <Controller
             name="description"
-            value={formData.description}
-            onChange={handleChange}
+            control={control}
+            render={({ field }) => <InputTextContainer {...field} />}
           />
         </div>
         <hr />
@@ -681,7 +570,7 @@ const Dashboard = () => {
             <CheckboxShow>
               <ShowButton
                 type="checkbox"
-                checked={checkedEduhistory}
+                checked={checkshowEducation}
                 onChange={handleShowEduhistory}
               />
               แสดง
@@ -859,28 +748,26 @@ const Dashboard = () => {
             </CheckboxShow>
           </CardHeader>
           <Nametxt>ที่อยู่</Nametxt>
-          <InputTextContainer
+          <Controller
             name="address"
-            value={formData.address}
-            onChange={handleChange}
+            control={control}
+            render={({ field }) => <InputTextContainer {...field} />}
           />
           <PersonData>
             <PhoneText>
               <Nametxt>เบอร์โทรศัพท์</Nametxt>
-              <InputContainer
-                placeholder="เบอร์โทรศัพท์"
+              <Controller
                 name="phone"
-                value={formData.phone}
-                onChange={handleChange}
+                control={control}
+                render={({ field }) => <InputContainer {...field} />}
               />
             </PhoneText>
             <EmailText>
               <Nametxt>อีเมล</Nametxt>
-              <InputContainer
-                placeholder="อีเมล"
+              <Controller
                 name="email"
-                value={formData.email}
-                onChange={handleChange}
+                control={control}
+                render={({ field }) => <InputContainer {...field} />}
               />
             </EmailText>
           </PersonData>
@@ -898,10 +785,10 @@ const Dashboard = () => {
               แสดง
             </CheckboxShow>
           </CardHeader>
-          <InputTextContainer
+          <Controller
             name="Expertise"
-            value={formData.Expertise}
-            onChange={handleChange}
+            control={control}
+            render={({ field }) => <InputTextContainer {...field} />}
           />
         </div>
         <hr />
@@ -1020,17 +907,19 @@ const Dashboard = () => {
           </Datacontainer>
         </div>
       </FormContainer>
+
       <FormContainer>
-        <div>
-          {checkedShowprofile ? <div>โปรไฟล์</div> : <></>}
-          {checkedEduhistory ? <div>ประวัติการศึกษา</div> : <></>}
-          {checkedShowResearch ? <div>ผลงานการวิจัย</div> : <></>}
-          {checkedShowReward ? <div>รางวัล</div> : <></>}
-          {checkedShowExp ? <div>ประสบการณ์</div> : <></>}
-          {checkedShowContact ? <div>ข้อมูลการติดต่อ</div> : <></>}
-          {checkedShowExpert ? <div>เชี่ยวชาญ</div> : <></>}
-          {checkedShowCer ? <div>ใบรับรองและใบอนุญาต</div> : <></>}
-        </div>
+        <Flex>
+          <Header>ตัวอย่าง</Header>
+          <PDFDownloadLink document={<BasicDocument />} fileName="porttest.pdf">
+            <DownloadButton>ส่งคำร้อง</DownloadButton>
+          </PDFDownloadLink>
+        </Flex>
+        <Subdate>แก้ไขล่าสุด: 5 สิงหาคม 2567 เวลา 20:36</Subdate>
+        <hr style={{ marginBottom: 15 }}></hr>
+        <PDFViewer showToolbar={false} width={503} height={709}>
+          <BasicDocument data={data} />
+        </PDFViewer>
       </FormContainer>
     </AppContainer>
   );

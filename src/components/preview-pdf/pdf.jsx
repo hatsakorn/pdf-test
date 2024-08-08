@@ -8,9 +8,9 @@ import {
   Font,
   Image,
 } from "@react-pdf/renderer";
+import profilePicUrl from "./img/profile.svg";
 import fontBase from "./font/THSarabun.ttf";
 import fontBold from "./font/THSarabun-Bold.ttf";
-import avatar from "./img/avatar.jpg";
 import signer from "./img/signer.png";
 import logo from "./img/logo.png";
 
@@ -87,19 +87,19 @@ const styles = StyleSheet.create({
   },
 });
 
-const BasicDocument = () => {
+const BasicDocument = ({ data }) => {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         <View style={{ ...styles.flex, gap: 8 }}>
           <View style={{ marginRight: 10 }}>
-            <Image style={styles.avatar} src={avatar} />
+            <Image style={styles.avatar} src={profilePicUrl} />
           </View>
           <View>
             <View style={{ ...styles.flex, marginTop: 10 }}>
               <View style={{ width: 375 }}>
-                <Text style={[styles.fs1, styles.bold]}>Name</Text>
-                <Text style={[styles.fs2, styles.bold]}>Position</Text>
+                <Text style={[styles.fs1, styles.bold]}>{data.name}</Text>
+                <Text style={[styles.fs2, styles.bold]}>{data.position}</Text>
               </View>
               <View>
                 <Image src={logo} style={styles.logo} />
@@ -113,7 +113,7 @@ const BasicDocument = () => {
                   styles.mt4,
                   { marginBottom: 10 },
                 ]}>
-                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                {data.desc}
               </Text>
             </View>
           </View>
@@ -134,8 +134,16 @@ const BasicDocument = () => {
             </Text>
             <Text style={[styles.item_sub_desc]}>เกรดเฉลี่ยสะสม 3.45 สาย</Text>
             <Text style={[styles.topic]}>{"  "}ประสบการณ์</Text>
-            <Text style={[styles.item_sub]}>พ.ศ.</Text>
-            <Text style={[styles.item_sub]}>พ.ศ.</Text>
+            <Text style={styles.item_name}>
+              Clinical prediction of thoracic vertebrae fracture in traumatic
+              injury patient
+            </Text>
+            <Text style={[styles.item_sub]}>1 ก.พ. 2566 - 1 ก.พ. 2566</Text>
+            <Text style={styles.item_name}>
+              Clinical prediction of thoracic vertebrae fracture in traumatic
+              injury patient
+            </Text>
+            <Text style={[styles.item_sub]}>1 ก.พ. 2566 - 1 ก.พ. 2566</Text>
             <Text style={[styles.topic]}>
               {"  "} เกียรติประวัติและรางวัลที่ได้รับ
             </Text>
@@ -156,6 +164,10 @@ const BasicDocument = () => {
             </Text>
             <Text style={[styles.item_sub]}>พ.ศ. 2563</Text>
             <Text style={[styles.topic]}>{"  "}บทความตีพิมพ์</Text>
+            <Text style={styles.item_name}>
+              การแพร่กระจายของการติดเชื้อในผู้ป่วยที่ปลูกถ่ายไขกระดูกและผ่าตัดเปลี่ยนไตในผู้ป่วยไตวายเรื้อรังระยะสุดท้าย
+            </Text>
+            <Text style={[styles.item_sub]}>พ.ศ. 2562</Text>
           </View>
           <View
             style={{
@@ -170,21 +182,17 @@ const BasicDocument = () => {
               </Text>
               <Text style={styles.textrightside}>ที่อยู่:</Text>
               <Text style={styles.textrightside}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem
+                {/* {data.address} */}Test
               </Text>
               <Text style={styles.textrightside}>โทรศัพท์มือถือ:</Text>
-              <Text style={styles.textrightside}>(080) 123-4567</Text>
+              <Text style={styles.textrightside}>093</Text>
               <Text style={styles.textrightside}>อีเมล:</Text>
-              <Text style={styles.textrightside}>batbatcom124@gmail.com</Text>
+              <Text style={styles.textrightside}>@hotmail</Text>
               <Text style={{ ...styles.topic, fontSize: 13 }}>
                 {"  "}ความเชี่ยวชาญ
               </Text>
               <Text style={styles.textrightside}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type
+                {/* {data.professional} */} Test
               </Text>
             </View>
             <View style={styles.container_sign}>
