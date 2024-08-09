@@ -335,59 +335,40 @@ const Signer = styled.img`
 const Dashboard = () => {
   const [profilePic, setProfilePic] = useState(null);
   const fileInputRef = useRef(null);
-  const { control, watch } = useForm({
-    name: "",
-    position: "",
-    description: "",
-    address: "",
-    phone: "",
-    email: "",
-    Expertise: "",
-    checkshowEducation: false,
-    checkedEdu: false,
-    checkshowResearch: false,
-    checkedResearch: false,
-    checkshowReward: false,
-    checkedReward1: false,
-    checkedReward2: false,
-    checkedReward3: false,
-    checkedReward4: false,
-    checkshowExp: false,
-    checkedExp1: false,
-    checkedExp2: false,
-    checkedShowContact: false,
-    checkShowCer: false,
-    checkedCer1: false,
-    checkedCer2: false,
-    checkedCer3: false,
-    checkedCer4: false,
-    checkedCer5: false,
-    checkedCer6: false,
-    checkedCer7: false,
+  const { control, watch, reset } = useForm({
+    defaultValues: {
+      name: "",
+      position: "",
+      description: "",
+      address: "",
+      phone: "",
+      email: "",
+      Expertise: "",
+      checkshowEducation: false,
+      checkedEdu: false,
+      checkshowResearch: false,
+      checkedResearch: false,
+      checkshowReward: false,
+      checkedReward1: false,
+      checkedReward2: false,
+      checkedReward3: false,
+      checkedReward4: false,
+      checkshowExp: false,
+      checkedExp1: false,
+      checkedExp2: false,
+      checkedShowContact: false,
+      checkShowCer: false,
+      checkedCer1: false,
+      checkedCer2: false,
+      checkedCer3: false,
+      checkedCer4: false,
+      checkedCer5: false,
+      checkedCer6: false,
+      checkedCer7: false,
+    },
   });
+
   const watchValues = watch();
-  const checkshowEducation = watch("checkshowEducation");
-  const checkedEdu = watch("checkedEdu");
-  const checkshowResearch = watch("checkshowResearch");
-  const checkedResearch = watch("checkedResearch");
-  const checkshowReward = watch("checkshowReward");
-  const checkedReward1 = watch("checkedReward1");
-  const checkedReward2 = watch("checkedReward2");
-  const checkedReward3 = watch("checkedReward3");
-  const checkedReward4 = watch("checkedReward4");
-  const checkshowExp = watch("checkshowExp");
-  const checkedExp1 = watch("checkedExp1");
-  const checkedExp2 = watch("checkedExp2");
-  const checkedShowContact = watch("checkedShowContact");
-  const checkedShowExpertise = watch("checkedShowExpertise");
-  const checkedShowCer = watch("checkShowCer");
-  const checkCer1 = watch("checkedCer1");
-  const checkCer2 = watch("checkedCer2");
-  const checkCer3 = watch("checkedCer3");
-  const checkCer4 = watch("checkedCer4");
-  const checkCer5 = watch("checkedCer5");
-  const checkCer6 = watch("checkedCer6");
-  const checkCer7 = watch("checkedCer7");
 
   const [checkedShowprofile, setCheckedShowprofile] = useState(false);
 
@@ -428,13 +409,48 @@ const Dashboard = () => {
     setCheckedShowprofile(event.target.checked);
   };
 
+  const handleReset = () => {
+    reset({
+      name: "",
+      position: "",
+      description: "",
+      address: "",
+      phone: "",
+      email: "",
+      Expertise: "",
+      checkshowEducation: false,
+      checkedEdu: false,
+      checkshowResearch: false,
+      checkedResearch: false,
+      checkshowReward: false,
+      checkedReward1: false,
+      checkedReward2: false,
+      checkedReward3: false,
+      checkedReward4: false,
+      checkshowExp: false,
+      checkedExp1: false,
+      checkedExp2: false,
+      checkedShowContact: false,
+      checkShowCer: false,
+      checkedCer1: false,
+      checkedCer2: false,
+      checkedCer3: false,
+      checkedCer4: false,
+      checkedCer5: false,
+      checkedCer6: false,
+      checkedCer7: false,
+    });
+    setProfilePic(null);
+    setCheckedShowprofile(false);
+  };
+
   return (
     <AppContainer>
       <FormContainer>
         <CardHeader>
           <PageText>สร้าง Portfolio</PageText>
           <FunctionButton>
-            <ResetButton>รีเซ็ทข้อมูล</ResetButton>
+            <ResetButton onClick={handleReset}>รีเซ็ทข้อมูล</ResetButton>
             <UpdateButton>อัพเดทข้อมูลใน Portfolio</UpdateButton>
           </FunctionButton>
         </CardHeader>
@@ -499,7 +515,11 @@ const Dashboard = () => {
                 name="checkshowEducation"
                 control={control}
                 render={({ field }) => (
-                  <ShowButton type="checkbox" {...field} />
+                  <ShowButton
+                    type="checkbox"
+                    checked={watchValues.checkshowEducation}
+                    {...field}
+                  />
                 )}
               />
               แสดง
@@ -511,7 +531,11 @@ const Dashboard = () => {
                 name="checkedEdu"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxContent type="checkbox" {...field} />
+                  <CheckboxContent
+                    type="checkbox"
+                    checked={watchValues.checkedEdu}
+                    {...field}
+                  />
                 )}
               />
               <CheckboxData>
@@ -531,7 +555,11 @@ const Dashboard = () => {
                 name="checkshowResearch"
                 control={control}
                 render={({ field }) => (
-                  <ShowButton type="checkbox" {...field} />
+                  <ShowButton
+                    type="checkbox"
+                    checked={watchValues.checkshowResearch}
+                    {...field}
+                  />
                 )}
               />
               แสดง
@@ -543,7 +571,11 @@ const Dashboard = () => {
                 name="checkedResearch"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxContent type="checkbox" {...field} />
+                  <CheckboxContent
+                    type="checkbox"
+                    checked={watchValues.checkedResearch}
+                    {...field}
+                  />
                 )}
               />
               <Checkboxtext>
@@ -562,7 +594,11 @@ const Dashboard = () => {
                 name="checkshowReward"
                 control={control}
                 render={({ field }) => (
-                  <ShowButton type="checkbox" {...field} />
+                  <ShowButton
+                    type="checkbox"
+                    checked={watchValues.checkshowReward}
+                    {...field}
+                  />
                 )}
               />
               แสดง
@@ -574,7 +610,11 @@ const Dashboard = () => {
                 name="checkedReward1"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxContent type="checkbox" {...field} />
+                  <CheckboxContent
+                    type="checkbox"
+                    checked={watchValues.checkedReward1}
+                    {...field}
+                  />
                 )}
               />
               <CheckboxData>
@@ -591,7 +631,11 @@ const Dashboard = () => {
                 name="checkedReward2"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxContent type="checkbox" {...field} />
+                  <CheckboxContent
+                    type="checkbox"
+                    checked={watchValues.checkedReward2}
+                    {...field}
+                  />
                 )}
               />
               <CheckboxData>
@@ -608,7 +652,11 @@ const Dashboard = () => {
                 name="checkedReward3"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxContent type="checkbox" {...field} />
+                  <CheckboxContent
+                    type="checkbox"
+                    checked={watchValues.checkedReward3}
+                    {...field}
+                  />
                 )}
               />
               <CheckboxData>
@@ -625,7 +673,11 @@ const Dashboard = () => {
                 name="checkedReward4"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxContent type="checkbox" {...field} />
+                  <CheckboxContent
+                    type="checkbox"
+                    checked={watchValues.checkedReward4}
+                    {...field}
+                  />
                 )}
               />
               <CheckboxData>
@@ -646,7 +698,11 @@ const Dashboard = () => {
                 name="checkshowExp"
                 control={control}
                 render={({ field }) => (
-                  <ShowButton type="checkbox" {...field} />
+                  <ShowButton
+                    type="checkbox"
+                    checked={watchValues.checkshowExp}
+                    {...field}
+                  />
                 )}
               />
               แสดง
@@ -658,7 +714,11 @@ const Dashboard = () => {
                 name="checkedExp1"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxButton type="checkbox" {...field} />
+                  <CheckboxButton
+                    type="checkbox"
+                    checked={watchValues.checkedExp1}
+                    {...field}
+                  />
                 )}
               />
               <Checkboxtext>
@@ -674,7 +734,11 @@ const Dashboard = () => {
                 name="checkedExp2"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxButton type="checkbox" {...field} />
+                  <CheckboxButton
+                    type="checkbox"
+                    checked={watchValues.checkedExp2}
+                    {...field}
+                  />
                 )}
               />
               <Checkboxtext>
@@ -694,7 +758,11 @@ const Dashboard = () => {
                 name="checkedShowContact"
                 control={control}
                 render={({ field }) => (
-                  <ShowButton type="checkbox" {...field} />
+                  <ShowButton
+                    type="checkbox"
+                    checked={watchValues.checkedShowContact}
+                    {...field}
+                  />
                 )}
               />
               แสดง
@@ -734,7 +802,11 @@ const Dashboard = () => {
                 name="checkedShowExpertise"
                 control={control}
                 render={({ field }) => (
-                  <ShowButton type="checkbox" {...field} />
+                  <ShowButton
+                    type="checkbox"
+                    checked={watchValues.checkedShowExpertise}
+                    {...field}
+                  />
                 )}
               />
               แสดง
@@ -755,7 +827,11 @@ const Dashboard = () => {
                 name="checkShowCer"
                 control={control}
                 render={({ field }) => (
-                  <ShowButton type="checkbox" {...field} />
+                  <ShowButton
+                    type="checkbox"
+                    checked={watchValues.checkShowCer}
+                    {...field}
+                  />
                 )}
               />
               แสดง
@@ -767,7 +843,11 @@ const Dashboard = () => {
                 name="checkedCer1"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxContent type="checkbox" {...field} />
+                  <CheckboxContent
+                    type="checkbox"
+                    checked={watchValues.checkedCer1}
+                    {...field}
+                  />
                 )}
               />
               <CheckboxData>
@@ -784,7 +864,11 @@ const Dashboard = () => {
                 name="checkedCer2"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxContent type="checkbox" {...field} />
+                  <CheckboxContent
+                    type="checkbox"
+                    checked={watchValues.checkedCer2}
+                    {...field}
+                  />
                 )}
               />
               <CheckboxData>
@@ -801,7 +885,11 @@ const Dashboard = () => {
                 name="checkedCer3"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxContent type="checkbox" {...field} />
+                  <CheckboxContent
+                    type="checkbox"
+                    checked={watchValues.checkedCer3}
+                    {...field}
+                  />
                 )}
               />
               <CheckboxData>
@@ -816,7 +904,11 @@ const Dashboard = () => {
                 name="checkedCer4"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxContent type="checkbox" {...field} />
+                  <CheckboxContent
+                    type="checkbox"
+                    checked={watchValues.checkedCer4}
+                    {...field}
+                  />
                 )}
               />
               <CheckboxData>
@@ -831,7 +923,11 @@ const Dashboard = () => {
                 name="checkedCer5"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxContent type="checkbox" {...field} />
+                  <CheckboxContent
+                    type="checkbox"
+                    checked={watchValues.checkedCer5}
+                    {...field}
+                  />
                 )}
               />
               <CheckboxData>
@@ -846,7 +942,11 @@ const Dashboard = () => {
                 name="checkedCer6"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxContent type="checkbox" {...field} />
+                  <CheckboxContent
+                    type="checkbox"
+                    checked={watchValues.checkedCer6}
+                    {...field}
+                  />
                 )}
               />
               <CheckboxData>
@@ -864,7 +964,11 @@ const Dashboard = () => {
                 name="checkedCer7"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxContent type="checkbox" {...field} />
+                  <CheckboxContent
+                    type="checkbox"
+                    checked={watchValues.checkedCer7}
+                    {...field}
+                  />
                 )}
               />
               <CheckboxData>
@@ -931,7 +1035,7 @@ const Dashboard = () => {
                 paddingTop: 10,
               }}
             >
-              {checkshowEducation ? (
+              {watchValues.checkshowEducation ? (
                 <div style={{ marginBottom: 10 }}>
                   <div
                     style={{
@@ -943,7 +1047,7 @@ const Dashboard = () => {
                   >
                     ประวัติการศึกษา
                   </div>
-                  {checkedEdu ? (
+                  {watchValues.checkedEdu ? (
                     <div>
                       <div style={{ fontSize: 11, marginTop: 5 }}>
                         มัธยมปลาย, ศิลศาตร์
@@ -958,7 +1062,7 @@ const Dashboard = () => {
               ) : null}
 
               {/* งานวิจัย*/}
-              {checkshowResearch ? (
+              {watchValues.checkshowResearch ? (
                 <div style={{ marginBottom: 10 }}>
                   <div
                     style={{
@@ -970,7 +1074,7 @@ const Dashboard = () => {
                   >
                     ผลงานวิจัยและบทความตีพิมพ์
                   </div>
-                  {checkedResearch ? (
+                  {watchValues.checkedResearch ? (
                     <div>
                       <div style={{ fontSize: 11, marginTop: 5 }}>
                         การแพร่กระจายของการติดเชื้อในผู้ป่วยที่ปลูกถ่ายไขกระดูกและผ่าตัดเปลี่ยนไตในผู้ป่วยไตวายเรื้อรังระยะสุดท้าย
@@ -984,7 +1088,7 @@ const Dashboard = () => {
               ) : null}
 
               {/* รางวัล*/}
-              {checkshowReward ? (
+              {watchValues.checkshowReward ? (
                 <div style={{ marginBottom: 10 }}>
                   <div
                     style={{
@@ -996,7 +1100,7 @@ const Dashboard = () => {
                   >
                     เกียรติประวัติและรางวัลที่ได้รับ
                   </div>
-                  {checkedReward1 ? (
+                  {watchValues.checkedReward1 ? (
                     <div>
                       <div style={{ fontSize: 11, marginTop: 5 }}>
                         รางวัลชนะเลิศการนำเสนอผลงานวิจัย (ระดับบัณฑิตศึกษา)
@@ -1006,7 +1110,7 @@ const Dashboard = () => {
                       </div>
                     </div>
                   ) : null}
-                  {checkedReward2 ? (
+                  {watchValues.checkedReward2 ? (
                     <div>
                       <div style={{ fontSize: 11, marginTop: 5 }}>
                         รางวัลชนะเลิศการนำเสนอผลงานวิจัย (ระดับบัณฑิตศึกษา)
@@ -1016,7 +1120,7 @@ const Dashboard = () => {
                       </div>
                     </div>
                   ) : null}
-                  {checkedReward3 ? (
+                  {watchValues.checkedReward3 ? (
                     <div>
                       <div style={{ fontSize: 11, marginTop: 5 }}>
                         รางวัลชนะเลิศการนำเสนอผลงานวิจัย (ระดับบัณฑิตศึกษา)
@@ -1026,7 +1130,7 @@ const Dashboard = () => {
                       </div>
                     </div>
                   ) : null}
-                  {checkedReward4 ? (
+                  {watchValues.checkedReward4 ? (
                     <div>
                       <div style={{ fontSize: 11, marginTop: 5 }}>
                         รางวัลชนะเลิศการนำเสนอผลงานวิจัย (ระดับบัณฑิตศึกษา)
@@ -1041,7 +1145,7 @@ const Dashboard = () => {
 
               {/* Exp*/}
 
-              {checkshowExp ? (
+              {watchValues.checkshowExp ? (
                 <div style={{ marginBottom: 10 }}>
                   <div
                     style={{
@@ -1053,7 +1157,7 @@ const Dashboard = () => {
                   >
                     เกียรติประวัติและรางวัลที่ได้รับ
                   </div>
-                  {checkedExp1 ? (
+                  {watchValues.checkedExp1 ? (
                     <div>
                       <div style={{ fontSize: 11, marginTop: 5 }}>
                         Clinical prediction of thoracic vertebrae fracture in
@@ -1064,7 +1168,7 @@ const Dashboard = () => {
                       </div>
                     </div>
                   ) : null}
-                  {checkedExp2 ? (
+                  {watchValues.checkedExp2 ? (
                     <div>
                       <div style={{ fontSize: 11, marginTop: 5 }}>
                         Clinical prediction of thoracic vertebrae fracture in
@@ -1089,7 +1193,7 @@ const Dashboard = () => {
               }}
             >
               <div style={{ marginTop: 20 }}>
-                {checkedShowContact ? (
+                {watchValues.checkedShowContact ? (
                   <div>
                     <div
                       style={{
@@ -1111,7 +1215,7 @@ const Dashboard = () => {
                 ) : null}
 
                 {/* งานวิจัย*/}
-                {checkedShowExpertise ? (
+                {watchValues.checkedShowExpertise ? (
                   <div>
                     <div
                       style={{
@@ -1129,40 +1233,40 @@ const Dashboard = () => {
               </div>
 
               {/* งานวิจัย*/}
-              {checkedShowCer ? (
+              {watchValues.checkedShowCer ? (
                 <div>
                   <div>cer</div>
-                  {checkCer1 ? (
+                  {watchValues.checkCer1 ? (
                     <div>
                       <div>รางวัล1</div>
                     </div>
                   ) : null}
-                  {checkCer2 ? (
+                  {watchValues.checkCer2 ? (
                     <div>
                       <div>รางวัล2</div>
                     </div>
                   ) : null}
-                  {checkCer3 ? (
+                  {watchValues.checkCer3 ? (
                     <div>
                       <div>รางวัล3</div>
                     </div>
                   ) : null}
-                  {checkCer4 ? (
+                  {watchValues.checkCer4 ? (
                     <div>
                       <div>รางวัล4</div>
                     </div>
                   ) : null}
-                  {checkCer5 ? (
+                  {watchValues.checkCer5 ? (
                     <div>
                       <div>รางวัล5</div>
                     </div>
                   ) : null}
-                  {checkCer6 ? (
+                  {watchValues.checkCer6 ? (
                     <div>
                       <div>รางวัล6</div>
                     </div>
                   ) : null}
-                  {checkCer7 ? (
+                  {watchValues.checkCer7 ? (
                     <div>
                       <div>รางวัล7</div>
                     </div>
