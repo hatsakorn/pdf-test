@@ -12,6 +12,7 @@ import fontBase from "./font/THSarabun.ttf";
 import fontBold from "./font/THSarabun-Bold.ttf";
 import signer from "./img/signer.png";
 import logo from "./img/logo.png";
+import { clearConfigCache } from "prettier";
 
 Font.register({ family: "textfont", src: fontBase });
 Font.register({ family: "textfont-bold", src: fontBold });
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
   page: {
     fontFamily: "textfont",
     padding: 20,
-    marginVertical: 20,
+    paddingBottom: 70,
   },
   bold: {
     fontFamily: "textfont-bold",
@@ -86,15 +87,26 @@ const styles = StyleSheet.create({
     paddingRight: 50,
     alignItems: "center",
   },
+  pageNumbers: {
+    position: "absolute",
+    bottom: 20,
+    left: 0,
+    right: 0,
+    textAlign: "center",
+  },
 });
 
 const BasicDocument = ({ data, image }) => {
   return (
     <Document>
-      <Page size="A4" style={{ ...styles.page }}>
-        <View style={{ ...styles.flex, gap: 8, marginBottom: 10 }}>
+      <Page size="A4" style={{ ...styles.page }} wrap>
+        <View style={{ ...styles.flex, gap: 8, marginBottom: 10 }} fixed>
           <View style={{ marginRight: 10 }}>
-            <Image style={styles.avatar} src={image} />
+            {data.checkedShowprofile ? (
+              <>
+                <Image style={styles.avatar} src={image} />
+              </>
+            ) : null}
           </View>
           <View>
             <View style={{ ...styles.flex, marginTop: 10, marginLeft: 8 }}>
@@ -106,27 +118,22 @@ const BasicDocument = ({ data, image }) => {
                 <Image src={logo} style={styles.logo} />
               </View>
             </View>
-            <View
-              style={{
-                ...styles.flex,
-                marginLeft: 8,
-                width: 200,
-                backgroundColor: "yellow",
-              }}>
+
+            <>
               <Text
                 style={[
                   styles.fs3,
                   styles.bold,
                   styles.mt4,
                   {
-                    width: 100,
-                    backgroundColor: "red",
                     marginBottom: 10,
+                    marginLeft: 8,
+                    width: 390,
                   },
                 ]}>
                 {data.description}
               </Text>
-            </View>
+            </>
           </View>
         </View>
         <View
@@ -257,20 +264,28 @@ const BasicDocument = ({ data, image }) => {
                   <Text style={styles.textrightside}>{data.email}</Text>
                 </>
               ) : null}
-              {data.Expertise ? (
-                <>
-                  <Text style={{ ...styles.topic, fontSize: 13 }}>
-                    {"  "}ความเชี่ยวชาญ
-                  </Text>
-                  <Text style={styles.textrightside}>{data.Expertise}</Text>
-                </>
-              ) : null}
-            </View>
-            <View style={styles.container_sign}>
-              <Image style={styles.signer} src={signer} />
-              <Text style={{ fontSize: 14 }}>นายอรรถพล อัศวเพชรฤกษ์</Text>
+              <View break>
+                {data.checkedShowExpertise ? (
+                  <>
+                    <Text style={{ ...styles.topic, fontSize: 13 }}>
+                      {"  "}ความเชี่ยวชาญ
+                    </Text>
+                    {/* <Text
+                      render={({ pageNumber, totalPages }) =>
+                        `${pageNumber} / ${totalPages}`
+                      }
+                    /> */}
+                    <Text style={styles.textrightside}>{data.Expertise}</Text>
+                  </>
+                ) : null}
+                <View style={styles.container_sign}>
+                  <Image style={styles.signer} src={signer} />
+                  <Text style={{ fontSize: 14 }}>นายอรรถพล อัศวเพชรฤกษ์</Text>
+                </View>
+              </View>
             </View>
           </View>
+          <View></View>
         </View>
       </Page>
     </Document>

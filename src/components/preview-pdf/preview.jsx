@@ -72,15 +72,15 @@ const CardPreview = () => {
       <FormContainer>
         <Flex>
           <Header>ตัวอย่าง</Header>
-          {/* <PDFDownloadLink document={<BasicDocument />} fileName="porttest.pdf"> */}
-          <DownloadButton>ส่งคำร้อง</DownloadButton>
-          {/* </PDFDownloadLink> */}
+          <PDFDownloadLink document={<BasicDocument />} fileName="porttest.pdf">
+            <DownloadButton>ส่งคำร้อง</DownloadButton>
+          </PDFDownloadLink>
         </Flex>
         <Subdate>แก้ไขล่าสุด: 5 สิงหาคม 2567 เวลา 20:36</Subdate>
         <hr style={{ marginBottom: 15 }}></hr>
         <PreviewContainer>
           <div style={{ display: "flex", marginBottom: 10 }}>
-            <Avatar src={profilePic} alt="Avatar" />
+            <Avatar src={logo} alt="Avatar" />
             <div style={{ marginLeft: 10 }}>
               <div
                 style={{

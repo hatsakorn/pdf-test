@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import styled from "styled-components";
 import BasicDocument from "./preview-pdf/pdf";
@@ -310,40 +310,55 @@ const Dashboard = () => {
   const fileInputRef = useRef(null);
   const { control, watch } = useForm({
     defaultValues: {
-      name: "",
-      position: "",
+      checkedShowprofile: true,
+      name: "Auttapon Autsawaphetrerk",
+      position: "Developer Trainee",
       description:
-        "aaaaaaaaaaaaaaaaaaaaaaaaaaaa aa aaaaaaaa aaaa aaaaa aaaaaa aaaaaaa aaaaaaa aaaaaaaaa aaaaaaa aaaaaa aaaaa aaaa aaa aa a",
-      address: "",
-      phone: "",
-      email: "",
-      Expertise: "",
-      checkshowEducation: false,
-      checkedEdu: false,
-      checkshowResearch: false,
-      checkedResearch: false,
-      checkshowReward: false,
-      checkedReward1: false,
-      checkedReward2: false,
-      checkedReward3: false,
-      checkedReward4: false,
-      checkshowExp: false,
-      checkedExp1: false,
-      checkedExp2: false,
-      checkedShowContact: false,
-      checkShowCer: false,
-      checkedCer1: false,
-      checkedCer2: false,
-      checkedCer3: false,
-      checkedCer4: false,
-      checkedCer5: false,
-      checkedCer6: false,
-      checkedCer7: false,
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type",
+      address: "27/111 Phetkasaem114 Nhongkhaem Nhongkangphlu Bangkok 10160",
+      phone: "0930146256",
+      email: "batabtcom124@gmail.com",
+      Expertise:
+        " scrambled it to make a type unknown printer took a galley of type and scrambled it to make a typegalley of type and scrambled it to make a type it to make a type Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type unknown printer took a galley of type and scrambled it to make a typegalley of type and scrambled it to make a type er since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type unknown printer tod scasd scasd and scasda a",
+      checkshowEducation: true,
+      checkedEdu: true,
+      checkshowResearch: true,
+      checkedResearch: true,
+      checkshowReward: true,
+      checkedReward1: true,
+      checkedReward2: true,
+      checkedReward3: true,
+      checkedReward4: true,
+      checkshowExp: true,
+      checkedExp1: true,
+      checkedExp2: true,
+      checkedShowContact: true,
+      checkedShowExpertise: true,
+      checkShowCer: true,
+      checkedCer1: true,
+      checkedCer2: true,
+      checkedCer3: true,
+      checkedCer4: true,
+      checkedCer5: true,
+      checkedCer6: true,
+      checkedCer7: true,
     },
   });
-  const watchValues = watch();
 
-  const [checkedShowprofile, setCheckedShowprofile] = useState(false);
+  const watchValues = watch();
+  const [delayedValues, setDelayedValues] = useState(watchValues);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDelayedValues(watchValues);
+    }, 2500);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [watchValues]);
+
+  const [checkedShowprofile, setCheckedShowprofile] = useState(true);
 
   const handleProfilePicChange = (event) => {
     const file = event.target.files[0];
@@ -406,10 +421,16 @@ const Dashboard = () => {
               สกุลไฟล์ที่รองรับ: .jpg, .png, .gif (ขนาดสูงสุดไม่เกิน 5MB)
             </ProfilePicAboutText>
             <CheckboxShow>
-              <ShowButton
-                type="checkbox"
-                checked={checkedShowprofile}
-                onChange={handleShowProfile}
+              <Controller
+                name="checkedShowprofile"
+                control={control}
+                render={({ field }) => (
+                  <ShowButton
+                    type="checkbox"
+                    checked={field.value}
+                    {...field}
+                  />
+                )}
               />
               แสดงรูปใน Portfolio
             </CheckboxShow>
@@ -453,7 +474,11 @@ const Dashboard = () => {
                 name="checkshowEducation"
                 control={control}
                 render={({ field }) => (
-                  <ShowButton type="checkbox" {...field} />
+                  <ShowButton
+                    type="checkbox"
+                    checked={field.value}
+                    {...field}
+                  />
                 )}
               />
               แสดง
@@ -465,7 +490,11 @@ const Dashboard = () => {
                 name="checkedEdu"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxContent type="checkbox" {...field} />
+                  <CheckboxContent
+                    type="checkbox"
+                    checked={field.value}
+                    {...field}
+                  />
                 )}
               />
               <CheckboxData>
@@ -485,7 +514,11 @@ const Dashboard = () => {
                 name="checkshowResearch"
                 control={control}
                 render={({ field }) => (
-                  <ShowButton type="checkbox" {...field} />
+                  <ShowButton
+                    type="checkbox"
+                    checked={field.value}
+                    {...field}
+                  />
                 )}
               />
               แสดง
@@ -497,7 +530,11 @@ const Dashboard = () => {
                 name="checkedResearch"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxContent type="checkbox" {...field} />
+                  <CheckboxContent
+                    type="checkbox"
+                    checked={field.value}
+                    {...field}
+                  />
                 )}
               />
               <Checkboxtext>
@@ -516,7 +553,11 @@ const Dashboard = () => {
                 name="checkshowReward"
                 control={control}
                 render={({ field }) => (
-                  <ShowButton type="checkbox" {...field} />
+                  <ShowButton
+                    type="checkbox"
+                    checked={field.value}
+                    {...field}
+                  />
                 )}
               />
               แสดง
@@ -528,7 +569,11 @@ const Dashboard = () => {
                 name="checkedReward1"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxContent type="checkbox" {...field} />
+                  <CheckboxContent
+                    type="checkbox"
+                    checked={field.value}
+                    {...field}
+                  />
                 )}
               />
               <CheckboxData>
@@ -545,7 +590,11 @@ const Dashboard = () => {
                 name="checkedReward2"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxContent type="checkbox" {...field} />
+                  <CheckboxContent
+                    type="checkbox"
+                    checked={field.value}
+                    {...field}
+                  />
                 )}
               />
               <CheckboxData>
@@ -562,7 +611,11 @@ const Dashboard = () => {
                 name="checkedReward3"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxContent type="checkbox" {...field} />
+                  <CheckboxContent
+                    type="checkbox"
+                    checked={field.value}
+                    {...field}
+                  />
                 )}
               />
               <CheckboxData>
@@ -579,7 +632,11 @@ const Dashboard = () => {
                 name="checkedReward4"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxContent type="checkbox" {...field} />
+                  <CheckboxContent
+                    type="checkbox"
+                    checked={field.value}
+                    {...field}
+                  />
                 )}
               />
               <CheckboxData>
@@ -600,7 +657,11 @@ const Dashboard = () => {
                 name="checkshowExp"
                 control={control}
                 render={({ field }) => (
-                  <ShowButton type="checkbox" {...field} />
+                  <ShowButton
+                    type="checkbox"
+                    checked={field.value}
+                    {...field}
+                  />
                 )}
               />
               แสดง
@@ -612,7 +673,11 @@ const Dashboard = () => {
                 name="checkedExp1"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxButton type="checkbox" {...field} />
+                  <CheckboxButton
+                    type="checkbox"
+                    checked={field.value}
+                    {...field}
+                  />
                 )}
               />
               <Checkboxtext>
@@ -628,7 +693,11 @@ const Dashboard = () => {
                 name="checkedExp2"
                 control={control}
                 render={({ field }) => (
-                  <CheckboxButton type="checkbox" {...field} />
+                  <CheckboxButton
+                    type="checkbox"
+                    checked={field.value}
+                    {...field}
+                  />
                 )}
               />
               <Checkboxtext>
@@ -648,7 +717,11 @@ const Dashboard = () => {
                 name="checkedShowContact"
                 control={control}
                 render={({ field }) => (
-                  <ShowButton type="checkbox" {...field} />
+                  <ShowButton
+                    type="checkbox"
+                    checked={field.value}
+                    {...field}
+                  />
                 )}
               />
               แสดง
@@ -688,7 +761,11 @@ const Dashboard = () => {
                 name="checkedShowExpertise"
                 control={control}
                 render={({ field }) => (
-                  <ShowButton type="checkbox" {...field} />
+                  <ShowButton
+                    type="checkbox"
+                    checked={field.value}
+                    {...field}
+                  />
                 )}
               />
               แสดง
@@ -840,7 +917,10 @@ const Dashboard = () => {
           <Header>ตัวอย่าง</Header>
           <PDFDownloadLink
             document={
-              <BasicDocument data={watchValues} image={profilePic || profile} />
+              <BasicDocument
+                data={delayedValues}
+                image={profilePic || profile}
+              />
             }
             fileName="porttest.pdf">
             <DownloadButton>ส่งคำร้อง</DownloadButton>
@@ -850,7 +930,7 @@ const Dashboard = () => {
         <hr style={{ marginBottom: 15 }}></hr>
 
         <PDFViewer showToolbar={false} width={503} height={709}>
-          <BasicDocument data={watchValues} image={profilePic || profile} />
+          <BasicDocument data={delayedValues} image={profilePic || profile} />
         </PDFViewer>
       </FormContainer>
     </AppContainer>
